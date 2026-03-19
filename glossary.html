@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychology Glossary — Squeeze of Everything</title>
+  <meta name="description" content="50+ psychology terms explained like a witty friend at a dinner party, not like a textbook that hates you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span>🍋</span> Squeeze of Everything
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="glossary.html" class="active">Psych Glossary</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero" style="padding: 4rem 0 1rem;">
+    <div class="container">
+      <span class="section__label">The Glossary</span>
+      <h1 class="hero__title">Psychology A–Z</h1>
+      <p class="hero__subtitle">Every term explained as if you're smart, curious, and allergic to jargon. Because you are.</p>
+    </div>
+  </section>
+
+  <!-- Glossary -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+
+      <!-- Search -->
+      <div class="glossary__search">
+        <input type="text" class="glossary__input" placeholder="🔍 Search terms... (e.g. 'bias', 'memory', 'social')">
+      </div>
+
+      <!-- Category Filters -->
+      <div class="glossary__filter-bar">
+        <button class="glossary__filter-btn active" data-category="all">All</button>
+        <button class="glossary__filter-btn" data-category="cognitive">Cognitive</button>
+        <button class="glossary__filter-btn" data-category="social">Social</button>
+        <button class="glossary__filter-btn" data-category="developmental">Developmental</button>
+        <button class="glossary__filter-btn" data-category="clinical">Clinical</button>
+        <button class="glossary__filter-btn" data-category="behavioral">Behavioral</button>
+        <button class="glossary__filter-btn" data-category="personality">Personality</button>
+        <button class="glossary__filter-btn" data-category="neuroscience">Neuroscience</button>
+      </div>
+
+      <!-- Glossary Grid -->
+      <div class="glossary__grid">
+
+        <!-- COGNITIVE -->
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Cognitive Dissonance</div>
+          <div class="glossary-card__aka">AKA: "I meant to do that"</div>
+          <div class="glossary-card__def">The mental discomfort you feel when holding two contradictory beliefs. Your brain's PR department kicks in and rewrites history so you still feel like a rational person. Spoiler: you're not.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Biases</span></div>
+          <a href="blog/cognitive-dissonance.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Confirmation Bias</div>
+          <div class="glossary-card__aka">AKA: "Googling until you're right"</div>
+          <div class="glossary-card__def">The tendency to search for, interpret, and remember information that confirms what you already believe. It's the reason your uncle is so confident about those conspiracy theories — he did "research."</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Biases</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Dunning-Kruger Effect</div>
+          <div class="glossary-card__aka">AKA: "Mount Stupid"</div>
+          <div class="glossary-card__def">People with limited competence in a domain tend to massively overestimate their ability. Meanwhile, actual experts underestimate theirs. The universe has a deeply ironic sense of humor.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Metacognition</span></div>
+          <a href="blog/dunning-kruger.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Anchoring Bias</div>
+          <div class="glossary-card__aka">AKA: "The first number wins"</div>
+          <div class="glossary-card__def">The first piece of information you encounter disproportionately influences all your subsequent judgments. This is why that "was $500, now $199" tag works on you every single time. You're welcome, retail industry.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Decision Making</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Sunk Cost Fallacy</div>
+          <div class="glossary-card__aka">AKA: "But I already paid for it"</div>
+          <div class="glossary-card__def">Continuing a behavior because of previously invested resources (time, money, effort) rather than future benefits. It's why you finish terrible movies, stay in dead-end jobs, and eat the rest of that massive burrito.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Decision Making</span></div>
+          <a href="blog/sunk-cost-fallacy.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Availability Heuristic</div>
+          <div class="glossary-card__aka">AKA: "If I can picture it, it must be common"</div>
+          <div class="glossary-card__def">Judging the likelihood of events based on how easily examples come to mind. This is why you think shark attacks are common (dramatic) but don't worry about falling furniture (boring, yet deadlier).</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Heuristics</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Hindsight Bias</div>
+          <div class="glossary-card__aka">AKA: "I knew it all along"</div>
+          <div class="glossary-card__def">After learning the outcome of an event, you suddenly feel like you predicted it. No, Karen, you didn't "always know" that relationship wouldn't work out. Your memory is just a revisionist historian.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Memory</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Choice Overload</div>
+          <div class="glossary-card__aka">AKA: "The jam study problem"</div>
+          <div class="glossary-card__def">Having too many options leads to decision paralysis, anxiety, and less satisfaction with whatever you choose. Explains why you spend 45 minutes choosing a Netflix show and then watch The Office again.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Decision Making</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Peak-End Rule</div>
+          <div class="glossary-card__aka">AKA: "The finale matters most"</div>
+          <div class="glossary-card__def">You judge experiences based on the most intense moment and the ending, not the average. A colonoscopy study proved this. Yes, someone designed a study about making colonoscopies feel better. Science is wild.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Memory</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Framing Effect</div>
+          <div class="glossary-card__aka">AKA: "It's all in how you say it"</div>
+          <div class="glossary-card__def">People react differently to the same information depending on how it's presented. "90% survival rate" sounds great. "10% chance of death" sounds terrifying. Same math. Different vibes.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Decision Making</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Spotlight Effect</div>
+          <div class="glossary-card__aka">AKA: "Nobody noticed your pimple"</div>
+          <div class="glossary-card__def">Overestimating how much other people notice about your appearance, behavior, and mistakes. You think everyone saw you trip? They were busy worrying about whether anyone noticed them trip.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Social Cognition</span></div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Bystander Effect</div>
+          <div class="glossary-card__aka">AKA: "Someone else will handle it"</div>
+          <div class="glossary-card__def">The more people who witness an emergency, the less likely any one person is to help. Everyone assumes someone else will step in. Diffusion of responsibility at its most chilling.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Group Behavior</span></div>
+          <a href="blog/bystander-effect.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Social Proof</div>
+          <div class="glossary-card__aka">AKA: "Everyone else is doing it"</div>
+          <div class="glossary-card__def">Looking to others' behavior to determine what's correct. It's why laugh tracks work, why you check restaurant reviews, and why "bestseller" stickers sell more books. We're fancy herd animals.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Influence</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Fundamental Attribution Error</div>
+          <div class="glossary-card__aka">AKA: "They're a jerk / I had a bad day"</div>
+          <div class="glossary-card__def">When someone cuts you off in traffic, they're a terrible person. When you cut someone off, you were running late. We judge others by character and ourselves by circumstance. Every. Single. Time.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Attribution</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Halo Effect</div>
+          <div class="glossary-card__aka">AKA: "Hot people get the benefit of the doubt"</div>
+          <div class="glossary-card__def">If someone is attractive, competent, or likable in one way, we assume they're great in other ways too. Attractive defendants get shorter sentences. Your handsome CEO gets credited with being "visionary." Life is unfair.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Perception</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Groupthink</div>
+          <div class="glossary-card__aka">AKA: "The meeting where nobody disagreed"</div>
+          <div class="glossary-card__def">When a group prioritizes consensus over critical thinking. Everyone nods along, nobody raises concerns, and then you get the Bay of Pigs invasion. Or your company's last rebrand. Same energy.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Group Behavior</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">In-Group Bias</div>
+          <div class="glossary-card__aka">AKA: "My team is better because it's mine"</div>
+          <div class="glossary-card__def">Favoring people who belong to your group — even if the group was randomly assigned 5 minutes ago. In experiments, people will literally discriminate based on whether they were sorted into the "blue team" or "red team." We are absurd creatures.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Identity</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Reciprocity Principle</div>
+          <div class="glossary-card__aka">AKA: "I owe you one"</div>
+          <div class="glossary-card__def">When someone does something for you, you feel compelled to return the favor. This is why free samples work, why your colleague's birthday card guilts you into buying donuts, and why the Hare Krishnas give you flowers at airports.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Influence</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Mere Exposure Effect</div>
+          <div class="glossary-card__aka">AKA: "That song grew on me"</div>
+          <div class="glossary-card__def">The more you're exposed to something, the more you tend to like it. It explains why radio hits work, why you eventually love your weird neighbor, and why advertisers shove the same ad in your face 47 times.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Attitudes</span></div>
+        </div>
+
+        <!-- DEVELOPMENTAL -->
+        <div class="glossary-card" data-category="developmental">
+          <div class="glossary-card__term">Attachment Theory</div>
+          <div class="glossary-card__aka">AKA: "It all goes back to your childhood"</div>
+          <div class="glossary-card__def">Your early relationship with caregivers creates a blueprint for all future relationships. Secure, anxious, avoidant, or disorganized — pick your adventure. (Just kidding, it was picked for you at age 2.)</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Developmental</span><span class="glossary-card__tag">Relationships</span></div>
+          <a href="blog/attachment-styles.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="developmental">
+          <div class="glossary-card__term">Growth Mindset</div>
+          <div class="glossary-card__aka">AKA: "Not yet vs. never"</div>
+          <div class="glossary-card__def">Believing your abilities can be developed through effort and learning, as opposed to a fixed mindset (believing talent is innate). Carol Dweck's research, occasionally butchered by motivational posters everywhere.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Developmental</span><span class="glossary-card__tag">Motivation</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="developmental">
+          <div class="glossary-card__term">Theory of Mind</div>
+          <div class="glossary-card__aka">AKA: "Other people have thoughts too"</div>
+          <div class="glossary-card__def">The ability to understand that other people have their own beliefs, desires, and perspectives different from yours. Develops around age 4 in children. Some adults are still working on it.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Developmental</span><span class="glossary-card__tag">Cognition</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="developmental">
+          <div class="glossary-card__term">Erikson's Stages</div>
+          <div class="glossary-card__aka">AKA: "Life crises, scheduled"</div>
+          <div class="glossary-card__def">Eight stages of psychosocial development, each with its own crisis. Trust vs. mistrust as a baby, identity vs. confusion as a teen, integrity vs. despair as you age. Basically a roadmap of existential drama from birth to death.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Developmental</span><span class="glossary-card__tag">Lifespan</span></div>
+        </div>
+
+        <!-- CLINICAL -->
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Cognitive Behavioral Therapy (CBT)</div>
+          <div class="glossary-card__aka">AKA: "Debugging your thoughts"</div>
+          <div class="glossary-card__def">A therapy approach that identifies and restructures unhelpful thought patterns. Basically, your brain is running buggy code, and CBT helps you find the bugs. It's the most evidence-backed therapy we have, and it's not even close.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Therapy</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Learned Helplessness</div>
+          <div class="glossary-card__aka">AKA: "Why bother trying"</div>
+          <div class="glossary-card__def">When repeated exposure to uncontrollable negative events leads you to stop trying, even when you actually could escape. Seligman discovered this and then spent the rest of his career trying to fix it. That's called character development.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Depression</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Imposter Syndrome</div>
+          <div class="glossary-card__aka">AKA: "They're going to find out I'm a fraud"</div>
+          <div class="glossary-card__def">The persistent feeling that you're faking your competence and will be exposed any day now. Affects roughly 70% of people at some point. If you're reading this and nodding — congratulations, you're statistically normal.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Self-Perception</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Rumination</div>
+          <div class="glossary-card__aka">AKA: "Your brain's infinite replay button"</div>
+          <div class="glossary-card__def">Repetitively thinking about the causes, consequences, and symptoms of distress without doing anything about it. It's like your brain is a terrible DJ who only plays one embarrassing song from 2003 on repeat at 3am.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Anxiety</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Placebo Effect</div>
+          <div class="glossary-card__aka">AKA: "Your brain is the real drug"</div>
+          <div class="glossary-card__def">Experiencing real improvement from a treatment that has no active ingredients, purely because you believe it will work. Your brain can literally reduce pain because someone gave you a sugar pill with confidence. We are magnificent idiots.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Research</span></div>
+        </div>
+
+        <!-- BEHAVIORAL -->
+        <div class="glossary-card" data-category="behavioral">
+          <div class="glossary-card__term">Classical Conditioning</div>
+          <div class="glossary-card__aka">AKA: "Pavlov's dogs, and also you"</div>
+          <div class="glossary-card__def">Learning to associate a neutral stimulus with a meaningful one. Pavlov rang a bell before feeding dogs, and soon the bell alone made them drool. Your phone notification sound does the same thing to you. You are the dog.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Behavioral</span><span class="glossary-card__tag">Learning</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="behavioral">
+          <div class="glossary-card__term">Operant Conditioning</div>
+          <div class="glossary-card__aka">AKA: "Reward the rat, shape the behavior"</div>
+          <div class="glossary-card__def">Learning through consequences — rewards increase behavior, punishment decreases it. B.F. Skinner's framework explains why you check social media (variable reward schedule), why your dog sits on command (treats), and why you don't touch hot stoves (ouch).</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Behavioral</span><span class="glossary-card__tag">Learning</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="behavioral">
+          <div class="glossary-card__term">Hedonic Treadmill</div>
+          <div class="glossary-card__aka">AKA: "Nothing stays exciting"</div>
+          <div class="glossary-card__def">The observed tendency to return to a relatively stable level of happiness despite major positive or negative life events. Won the lottery? Give it 6 months. Got dumped? Give it 6 months. Baseline is a tyrant.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Behavioral</span><span class="glossary-card__tag">Happiness</span></div>
+          <a href="blog/hedonic-treadmill.html" class="glossary-card__link">Read the deep dive →</a>
+        </div>
+
+        <div class="glossary-card" data-category="behavioral">
+          <div class="glossary-card__term">Loss Aversion</div>
+          <div class="glossary-card__aka">AKA: "Losing $20 hurts more than finding $20 feels good"</div>
+          <div class="glossary-card__def">Losses are psychologically about twice as powerful as gains. This is why you hold onto losing stocks, why free trials convert, and why people will fight harder to keep something than to gain something equivalent. Kahneman & Tversky's greatest hit.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Behavioral</span><span class="glossary-card__tag">Decision Making</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="behavioral">
+          <div class="glossary-card__term">Habit Loop</div>
+          <div class="glossary-card__aka">AKA: "Cue → Routine → Reward → Repeat forever"</div>
+          <div class="glossary-card__def">The neurological loop that governs habits: a cue triggers a routine which delivers a reward. Understanding this loop is the key to building good habits and breaking bad ones. Also explains why you open Instagram every time you're bored.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Behavioral</span><span class="glossary-card__tag">Habits</span></div>
+        </div>
+
+        <!-- PERSONALITY -->
+        <div class="glossary-card" data-category="personality">
+          <div class="glossary-card__term">Big Five Personality Traits</div>
+          <div class="glossary-card__aka">AKA: "OCEAN — your personality's five-star review"</div>
+          <div class="glossary-card__def">Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism. The most scientifically validated personality model. Unlike your Myers-Briggs result, this one actually predicts things. Sorry, INFJs.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Personality</span><span class="glossary-card__tag">Traits</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="personality">
+          <div class="glossary-card__term">Locus of Control</div>
+          <div class="glossary-card__aka">AKA: "Is it me or is it fate?"</div>
+          <div class="glossary-card__def">Whether you believe outcomes are controlled by you (internal) or by external forces (external). Internal locus: "I aced that test because I studied." External locus: "I aced it because the teacher was easy." Both can be delusional.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Personality</span><span class="glossary-card__tag">Control</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="personality">
+          <div class="glossary-card__term">Self-Serving Bias</div>
+          <div class="glossary-card__aka">AKA: "I'm the main character"</div>
+          <div class="glossary-card__def">Attributing successes to your own character and failures to external factors. You got the promotion? Talent. You got fired? The company was toxic. Your brain is your biggest fan and most unreliable narrator.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Personality</span><span class="glossary-card__tag">Attribution</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="personality">
+          <div class="glossary-card__term">Narcissism</div>
+          <div class="glossary-card__aka">AKA: "Not just selfies"</div>
+          <div class="glossary-card__def">A personality trait (and at the extreme, a disorder) characterized by grandiosity, need for admiration, and lack of empathy. Exists on a spectrum. A little is healthy (confidence). A lot is... your ex. Probably.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Personality</span><span class="glossary-card__tag">Disorders</span></div>
+        </div>
+
+        <!-- NEUROSCIENCE -->
+        <div class="glossary-card" data-category="neuroscience">
+          <div class="glossary-card__term">Neuroplasticity</div>
+          <div class="glossary-card__aka">AKA: "Old dogs, new tricks"</div>
+          <div class="glossary-card__def">Your brain's ability to reorganize itself by forming new neural connections throughout life. It's the reason you can learn guitar at 40 and why London taxi drivers have unusually large hippocampi. Your brain is moldable. Use it.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Neuroscience</span><span class="glossary-card__tag">Brain</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="neuroscience">
+          <div class="glossary-card__term">Amygdala Hijack</div>
+          <div class="glossary-card__aka">AKA: "Why you yelled before you thought"</div>
+          <div class="glossary-card__def">When your amygdala (the brain's smoke alarm) triggers a fight-or-flight response before your prefrontal cortex (the rational adult) can intervene. It's why you snap at your partner and immediately think "why did I just say that?"</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Neuroscience</span><span class="glossary-card__tag">Emotions</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="neuroscience">
+          <div class="glossary-card__term">Dopamine</div>
+          <div class="glossary-card__aka">AKA: "Not actually the 'pleasure chemical'"</div>
+          <div class="glossary-card__def">A neurotransmitter involved in motivation, reward anticipation, and learning. Contrary to pop science, it's more about wanting than liking. It's the craving, not the satisfaction. This is why scrolling feels urgent but never fulfilling.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Neuroscience</span><span class="glossary-card__tag">Neurotransmitters</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="neuroscience">
+          <div class="glossary-card__term">Mirror Neurons</div>
+          <div class="glossary-card__aka">AKA: "Monkey see, monkey feel"</div>
+          <div class="glossary-card__def">Neurons that fire both when you perform an action and when you watch someone else do it. They may be the neural basis for empathy, learning by imitation, and why watching someone eat makes you hungry. Still debated, but very cool.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Neuroscience</span><span class="glossary-card__tag">Empathy</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="neuroscience">
+          <div class="glossary-card__term">Default Mode Network</div>
+          <div class="glossary-card__aka">AKA: "Your brain's screensaver"</div>
+          <div class="glossary-card__def">The network of brain regions active when you're not focused on the outside world — daydreaming, self-reflection, imagining the future. It's where creativity happens, but also where rumination lives. Your idle brain is busy being dramatic.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Neuroscience</span><span class="glossary-card__tag">Brain Networks</span></div>
+        </div>
+
+        <!-- MORE COGNITIVE -->
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Baader-Meinhof Phenomenon</div>
+          <div class="glossary-card__aka">AKA: "Frequency illusion"</div>
+          <div class="glossary-card__def">Once you learn a new word or concept, you suddenly see it everywhere. You just learned "gaslighting"? Now everyone is gaslighting everyone. The world didn't change. Your attention filter did.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Perception</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="cognitive">
+          <div class="glossary-card__term">Zeigarnik Effect</div>
+          <div class="glossary-card__aka">AKA: "Why unfinished tasks haunt you"</div>
+          <div class="glossary-card__def">Incomplete tasks occupy your mind more than completed ones. It's why that unanswered email nags at you, why cliffhangers work, and why writing things down on a to-do list actually reduces anxiety — your brain can finally let go.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Memory</span></div>
+        </div>
+
+        <!-- MORE SOCIAL -->
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Cognitive Load Theory</div>
+          <div class="glossary-card__aka">AKA: "Your brain has limited RAM"</div>
+          <div class="glossary-card__def">Your working memory can only handle so much at once. Overload it and performance, decision-making, and willpower all tank. This is why you make terrible food choices when mentally exhausted and why IKEA instructions feel like war.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Cognitive</span><span class="glossary-card__tag">Performance</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="social">
+          <div class="glossary-card__term">Pygmalion Effect</div>
+          <div class="glossary-card__aka">AKA: "Expectations create reality"</div>
+          <div class="glossary-card__def">When higher expectations lead to higher performance. Teachers who believed (falsely) that certain students were gifted saw those students actually improve more. Your expectations of people literally change their behavior. Use this power wisely.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Social</span><span class="glossary-card__tag">Education</span></div>
+        </div>
+
+        <!-- MORE CLINICAL -->
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Flow State</div>
+          <div class="glossary-card__aka">AKA: "Being in the zone"</div>
+          <div class="glossary-card__def">That state of complete absorption where time disappears and everything clicks. Csikszentmihalyi found it happens when challenge meets skill at just the right level. Too easy = boredom. Too hard = anxiety. Just right = flow. It's the Goldilocks of brain states.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Positive Psychology</span></div>
+        </div>
+
+        <div class="glossary-card" data-category="clinical">
+          <div class="glossary-card__term">Emotional Regulation</div>
+          <div class="glossary-card__aka">AKA: "Not losing it (on purpose)"</div>
+          <div class="glossary-card__def">The ability to manage and respond to emotional experiences in healthy ways. Not suppressing emotions — that backfires spectacularly. More like being the thermostat instead of the thermometer. Feel the feeling, choose the response.</div>
+          <div class="glossary-card__tags"><span class="glossary-card__tag">Clinical</span><span class="glossary-card__tag">Skills</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Get Squeezed Weekly 🍋</h2>
+      <p>One psychology concept per week, translated from Academic to Human.</p>
+      <form class="newsletter__form">
+        <input type="email" class="newsletter__input" placeholder="your@email.com" required>
+        <button type="submit" class="newsletter__btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <ul class="footer__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="glossary.html">Glossary</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <p>🍋 Squeeze of Everything — Practical Psychology for Humans</p>
+      <p style="margin-top: 0.5rem;">© 2026. Made with curiosity and mild irreverence.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
