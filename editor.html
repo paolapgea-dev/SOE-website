@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOE Editor — Squeeze of Everything</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>">
+  <style>
+    /* ========== CSS Variables (matching site) ========== */
+    :root {
+      --lemon: #FFE135;
+      --lemon-light: #FFF9C4;
+      --lemon-dark: #F9A825;
+      --ink: #1a1a2e;
+      --ink-light: #3a3a5e;
+      --paper: #FFFDF7;
+      --paper-alt: #FFF8E7;
+      --accent: #FF6B6B;
+      --accent-teal: #2EC4B6;
+      --gray-100: #f7f7f7;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-600: #666;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --sidebar-w: 240px;
+    }
+
+    /* ========== Reset ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-main);
+      background: #f4f3ef;
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ========== Top Nav ========== */
+    .editor-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--ink);
+      color: white;
+      padding: 0 1.5rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .editor-nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .editor-nav__logo span { font-size: 1.4rem; }
+
+    .editor-nav__right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .editor-nav__link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .editor-nav__link:hover { color: var(--lemon); }
+
+    .editor-nav__status {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .editor-nav__status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      display: inline-block;
+    }
+
+    /* ========== Tab Bar ========== */
+    .tab-bar {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      padding: 0 1.5rem;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 0.85rem 1.5rem;
+      font-family: var(--font-main);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover { color: var(--ink); }
+
+    .tab-btn.active {
+      color: var(--ink);
+      border-bottom-color: var(--lemon-dark);
+    }
+
+    /* ========== Main Content ========== */
+    .editor-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ========== Common Form Styles ========== */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-light);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group label .hint {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--gray-400);
+      font-size: 0.78rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--lemon-dark);
+      box-shadow: 0 0 0 3px rgba(249, 168, 37, 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.6;
+    }
+
+    .form-select {
+      cursor: pointer;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ========== Cards / Panels ========== */
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .panel__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* ========== Buttons ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--lemon);
+      color: var(--ink);
+    }
+
+    .btn--primary:hover {
+      background: var(--lemon-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 225, 53, 0.35);
+    }
+
+    .btn--secondary {
+      background: var(--gray-100);
+      color: var(--ink);
+      border: 1.5px solid var(--gray-200);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--ink);
+      background: white;
+    }
+
+    .btn--danger {
+      background: #fff0f0;
+      color: var(--accent);
+      border: 1.5px solid #ffd4d4;
+    }
+
+    .btn--danger:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn--teal {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    .btn--teal:hover {
+      background: #25a99c;
+      transform: translateY(-1px);
+    }
+
+    .btn--small {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ========== Data Table ========== */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 0 -1.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-400);
+      border-bottom: 2px solid var(--gray-200);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .data-table th:hover { color: var(--ink); }
+
+    .data-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: top;
+    }
+
+    .data-table tr:hover td { background: var(--paper-alt); }
+
+    .data-table .td-term {
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .data-table .td-term:hover { color: var(--lemon-dark); }
+
+    .data-table .td-category {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      background: var(--lemon-light);
+      color: var(--ink-light);
+    }
+
+    .data-table .td-actions {
+      white-space: nowrap;
+    }
+
+    /* ========== Search Bar ========== */
+    .search-bar {
+      position: relative;
+      max-width: 360px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.55rem 0.9rem 0.55rem 2.2rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-bar input:focus { border-color: var(--lemon-dark); }
+
+    .search-bar::before {
+      content: '\1F50D';
+      position: absolute;
+      left: 0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    /* ========== Glossary Preview Card ========== */
+    .preview-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border-left: 4px solid var(--lemon);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .preview-card__term {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .preview-card__aka {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-card__def {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .preview-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .preview-card__tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      background: var(--lemon-light);
+      color: var(--ink-light);
+      font-weight: 600;
+    }
+
+    .preview-card__link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--lemon-dark);
+    }
+
+    /* ========== Blog Editor Layout ========== */
+    .blog-editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1100px) {
+      .blog-editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Markdown Toolbar ========== */
+    .md-toolbar {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.5rem;
+      background: var(--gray-100);
+      border: 1.5px solid var(--gray-200);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      flex-wrap: wrap;
+    }
+
+    .md-toolbar button {
+      padding: 0.35rem 0.65rem;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 5px;
+      font-family: var(--font-main);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--ink-light);
+    }
+
+    .md-toolbar button:hover {
+      background: var(--lemon-light);
+      border-color: var(--lemon-dark);
+      color: var(--ink);
+    }
+
+    .md-toolbar .sep {
+      width: 1px;
+      background: var(--gray-200);
+      margin: 0 0.25rem;
+    }
+
+    .content-textarea {
+      border-radius: 0 0 8px 8px !important;
+      border-top: none !important;
+      min-height: 450px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* ========== Blog Preview ========== */
+    .blog-preview {
+      background: var(--paper);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-height: 700px;
+      overflow-y: auto;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .blog-preview h1 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-preview h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin: 1.5rem 0 0.75rem;
+      line-height: 1.3;
+    }
+
+    .blog-preview h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .blog-preview p { margin-bottom: 1rem; }
+
+    .blog-preview blockquote {
+      border-left: 4px solid var(--lemon);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      background: var(--lemon-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-style: italic;
+      color: var(--ink-light);
+    }
+
+    .blog-preview ul, .blog-preview ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+
+    .blog-preview li { margin-bottom: 0.5rem; }
+
+    .blog-preview .callout {
+      background: var(--paper-alt);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .blog-preview .callout--study { border-left: 4px solid var(--accent-teal); }
+    .blog-preview .callout--snarky { border-left: 4px solid var(--accent); }
+
+    .blog-preview .callout__label {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+      color: var(--accent-teal);
+    }
+
+    .blog-preview .callout--snarky .callout__label { color: var(--accent); }
+
+    .blog-preview .preview-tag {
+      display: inline-block;
+      background: var(--lemon);
+      color: var(--ink);
+      padding: 0.2rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .blog-preview .preview-subtitle {
+      font-size: 1rem;
+      color: var(--ink-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-preview .preview-meta {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* ========== Color Picker Row ========== */
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .color-row input[type="color"] {
+      width: 40px;
+      height: 36px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 2px;
+      cursor: pointer;
+      background: white;
+    }
+
+    .color-preview {
+      flex: 1;
+      height: 36px;
+      border-radius: 8px;
+      border: 1.5px solid var(--gray-200);
+    }
+
+    /* ========== Toast ========== */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: var(--ink);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      animation: toastIn 0.3s ease-out;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      max-width: 380px;
+    }
+
+    .toast--success { border-left: 4px solid var(--accent-teal); }
+    .toast--warning { border-left: 4px solid var(--lemon-dark); }
+    .toast--error { border-left: 4px solid var(--accent); }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(12px) scale(0.95); }
+    }
+
+    /* ========== Modal ========== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26,26,46,0.5);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal__title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .modal__close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray-400);
+      padding: 0.25rem;
+      line-height: 1;
+    }
+
+    .modal__close:hover { color: var(--ink); }
+
+    .modal__footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    /* ========== Empty State ========== */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--gray-400);
+    }
+
+    .empty-state__icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-state__text { font-size: 0.95rem; margin-bottom: 1rem; }
+
+    /* ========== Glossary Form + Preview Layout ========== */
+    .glossary-editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .glossary-editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Settings Grid ========== */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .settings-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Misc ========== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--lemon-light);
+      color: var(--ink-light);
+    }
+
+    .count-badge {
+      background: var(--ink);
+      color: white;
+      padding: 0.1rem 0.55rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 0.4rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 1.5rem 0;
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+
+    /* ========== Keyboard shortcut hint ========== */
+    kbd {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      color: var(--gray-600);
+    }
+
+    .shortcut-hint {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 0.5rem;
+    }
+
+    /* ========== Posts table card gradient ========== */
+    .gradient-swatch {
+      width: 48px;
+      height: 28px;
+      border-radius: 6px;
+      display: inline-block;
+      border: 1px solid var(--gray-200);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== Top Navigation ==================== -->
+  <nav class="editor-nav">
+    <a href="index.html" class="editor-nav__logo">
+      <span>🍋</span> SOE Editor
+    </a>
+    <div class="editor-nav__right">
+      <div class="editor-nav__status">
+        <span class="dot"></span>
+        <span id="statusText">Ready</span>
+      </div>
+      <a href="index.html" class="editor-nav__link">View Site</a>
+      <a href="blog.html" class="editor-nav__link">Blog</a>
+      <a href="glossary.html" class="editor-nav__link">Glossary</a>
+    </div>
+  </nav>
+
+  <!-- ==================== Tab Bar ==================== -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="glossary">Glossary Manager <span class="count-badge" id="glossaryCount">0</span></button>
+    <button class="tab-btn" data-tab="blog">Blog Post Creator</button>
+    <button class="tab-btn" data-tab="settings">Site Settings</button>
+  </div>
+
+  <!-- ==================== Main Content ==================== -->
+  <main class="editor-main">
+
+    <!-- ===================== TAB 1: GLOSSARY ===================== -->
+    <div class="tab-panel active" id="tab-glossary">
+
+      <!-- Top actions -->
+      <div class="panel">
+        <div class="panel__header">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <h2 class="panel__title">Glossary Terms</h2>
+            <div class="search-bar">
+              <input type="text" id="glossarySearch" placeholder="Search terms...">
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" onclick="openGlossaryModal()">+ Add New Term</button>
+            <button class="btn btn--teal" onclick="saveGlossaryJSON()">Save &amp; Download</button>
+            <button class="btn btn--secondary" onclick="copyGlossaryJSON()">Copy JSON</button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="data-table-wrap">
+          <table class="data-table" id="glossaryTable">
+            <thead>
+              <tr>
+                <th onclick="sortGlossary('term')">Term</th>
+                <th onclick="sortGlossary('aka')">AKA</th>
+                <th onclick="sortGlossary('category')">Category</th>
+                <th>Tags</th>
+                <th>Blog Link</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="glossaryTableBody">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="glossaryEmpty" style="display:none;">
+          <div class="empty-state__icon">📖</div>
+          <div class="empty-state__text">No glossary terms yet. Click "Add New Term" to get started.</div>
+        </div>
+      </div>
+
+      <p class="shortcut-hint">Tip: Press <kbd>Ctrl</kbd>+<kbd>S</kbd> to save the current tab's data. Click a term name to edit it.</p>
+    </div>
+
+    <!-- ===================== TAB 2: BLOG POST CREATOR ===================== -->
+    <div class="tab-panel" id="tab-blog">
+
+      <!-- Posts listing -->
+      <div class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title">Existing Posts <span class="count-badge" id="postsCount">0</span></h2>
+          <div class="btn-group">
+            <button class="btn btn--teal" onclick="savePostsJSON()">Save posts.json</button>
+            <button class="btn btn--secondary" onclick="copyPostsJSON()">Copy JSON</button>
+          </div>
+        </div>
+        <div class="data-table-wrap">
+          <table class="data-table" id="postsTable">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Reading Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="postsTableBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="postsEmpty" style="display:none;">
+          <div class="empty-state__icon">📝</div>
+          <div class="empty-state__text">No posts in posts.json yet. Create one below!</div>
+        </div>
+      </div>
+
+      <!-- Create / Edit Post -->
+      <div class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title" id="blogFormTitle">Create New Post</h2>
+          <div class="btn-group">
+            <button class="btn btn--primary" onclick="generateBlogHTML()">Generate &amp; Download HTML</button>
+            <button class="btn btn--teal" onclick="addToPostsJSON()">Add to Blog Listing</button>
+            <button class="btn btn--secondary" id="blogClearBtn" onclick="clearBlogForm()">Clear Form</button>
+          </div>
+        </div>
+
+        <div class="blog-editor-layout">
+          <!-- Left: Form -->
+          <div>
+            <div class="form-group">
+              <label>Post Title</label>
+              <input type="text" class="form-input" id="blogTitle" placeholder="e.g., Cognitive Dissonance: Why Your Brain Gaslights Itself">
+            </div>
+            <div class="form-group">
+              <label>Subtitle</label>
+              <input type="text" class="form-input" id="blogSubtitle" placeholder="e.g., Festinger's classic 1957 study, but explained as if...">
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label>Category / Tag</label>
+                <select class="form-select" id="blogTag">
+                  <option value="Study Translation">Study Translation</option>
+                  <option value="Deep Dive">Deep Dive</option>
+                  <option value="Concept Explainer">Concept Explainer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-input" id="blogDate">
+              </div>
+              <div class="form-group">
+                <label>Reading Time</label>
+                <input type="text" class="form-input" id="blogReadTime" placeholder="e.g., 8 min read">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Excerpt <span class="hint">(for blog listing card)</span></label>
+              <textarea class="form-textarea" id="blogExcerpt" rows="2" placeholder="Short description for the blog card..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Filename <span class="hint">(e.g., cognitive-dissonance — no extension)</span></label>
+              <input type="text" class="form-input" id="blogFilename" placeholder="e.g., cognitive-dissonance">
+            </div>
+            <div class="form-group">
+              <label>Card Gradient Colors</label>
+              <div class="color-row">
+                <input type="color" id="blogColor1" value="#FF6B6B">
+                <input type="color" id="blogColor2" value="#ee5a24">
+                <div class="color-preview" id="blogColorPreview" style="background: linear-gradient(135deg, #FF6B6B 0%, #ee5a24 100%);"></div>
+              </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-group">
+              <label>Article Content <span class="hint">(HTML — use toolbar to insert snippets)</span></label>
+              <div class="md-toolbar">
+                <button type="button" onclick="insertSnippet('bold')" title="Bold text"><b>B</b></button>
+                <button type="button" onclick="insertSnippet('italic')" title="Italic text"><em>I</em></button>
+                <button type="button" onclick="insertSnippet('h2')" title="Heading 2">H2</button>
+                <button type="button" onclick="insertSnippet('h3')" title="Heading 3">H3</button>
+                <div class="sep"></div>
+                <button type="button" onclick="insertSnippet('blockquote')" title="Blockquote">Quote</button>
+                <button type="button" onclick="insertSnippet('callout-study')" title="Study callout box">Study Callout</button>
+                <button type="button" onclick="insertSnippet('callout-snarky')" title="Snarky sidebar box">Snarky Callout</button>
+                <div class="sep"></div>
+                <button type="button" onclick="insertSnippet('ul')" title="Unordered list">List</button>
+                <button type="button" onclick="insertSnippet('ol')" title="Ordered list">Num List</button>
+                <button type="button" onclick="insertSnippet('p')" title="Paragraph">P</button>
+                <button type="button" onclick="insertSnippet('hr')" title="Horizontal rule">HR</button>
+              </div>
+              <textarea class="form-textarea content-textarea" id="blogContent" placeholder="Write your article HTML here..."></textarea>
+            </div>
+          </div>
+
+          <!-- Right: Preview -->
+          <div>
+            <div class="form-group">
+              <label>Live Preview</label>
+            </div>
+            <div class="blog-preview" id="blogPreview">
+              <p style="color:var(--gray-400);text-align:center;padding:2rem;">Start typing to see a live preview of your article.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="shortcut-hint">Tip: Press <kbd>Ctrl</kbd>+<kbd>S</kbd> to download the generated HTML file.</p>
+    </div>
+
+    <!-- ===================== TAB 3: SITE SETTINGS ===================== -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title">Site Settings</h2>
+          <div class="btn-group">
+            <button class="btn btn--primary" onclick="saveSettings()">Save Settings to localStorage</button>
+            <button class="btn btn--secondary" onclick="exportSettings()">Export as JSON</button>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <div>
+            <h3 style="font-family:var(--font-display);margin-bottom:1rem;">General</h3>
+            <div class="form-group">
+              <label>Site Name</label>
+              <input type="text" class="form-input" id="settingSiteName" value="Squeeze of Everything">
+            </div>
+            <div class="form-group">
+              <label>Tagline</label>
+              <input type="text" class="form-input" id="settingTagline" value="Practical Psychology for Humans">
+            </div>
+            <div class="form-group">
+              <label>About Text</label>
+              <textarea class="form-textarea" id="settingAbout" rows="4">We take real academic research, strip out the jargon, and rebuild it with humor, weird analogies, and things you can actually apply to your life. For curious humans only.</textarea>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family:var(--font-display);margin-bottom:1rem;">Newsletter &amp; Footer</h3>
+            <div class="form-group">
+              <label>Newsletter Heading</label>
+              <input type="text" class="form-input" id="settingNewsletterH" value="Get Squeezed Weekly 🍋">
+            </div>
+            <div class="form-group">
+              <label>Newsletter Description</label>
+              <textarea class="form-textarea" id="settingNewsletterP" rows="2">One psychology concept per week, translated from Academic to Human. No spam, no toxic positivity.</textarea>
+            </div>
+            <div class="form-group">
+              <label>Footer Text (line 1)</label>
+              <input type="text" class="form-input" id="settingFooter1" value="🍋 Squeeze of Everything — Practical Psychology for Humans">
+            </div>
+            <div class="form-group">
+              <label>Footer Text (line 2)</label>
+              <input type="text" class="form-input" id="settingFooter2" value="&copy; 2026. Made with curiosity and mild irreverence.">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="shortcut-hint">Settings are stored in your browser's localStorage. Export as JSON if you want to keep a backup.</p>
+    </div>
+  </main>
+
+  <!-- ==================== Toast Container ==================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==================== Glossary Modal ==================== -->
+  <div class="modal-overlay" id="glossaryModal" style="display:none;" onclick="if(event.target===this)closeGlossaryModal()">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="glossaryModalTitle">Add New Term</h3>
+        <button class="modal__close" onclick="closeGlossaryModal()">&times;</button>
+      </div>
+
+      <div class="glossary-editor-layout">
+        <div>
+          <div class="form-group">
+            <label>Term Name</label>
+            <input type="text" class="form-input" id="gTerm" placeholder="e.g., Cognitive Dissonance">
+          </div>
+          <div class="form-group">
+            <label>AKA Subtitle <span class="hint">(what shows in quotes)</span></label>
+            <input type="text" class="form-input" id="gAka" placeholder='e.g., "I meant to do that"'>
+          </div>
+          <div class="form-group">
+            <label>Definition</label>
+            <textarea class="form-textarea" id="gDef" rows="3" placeholder="Explain the term in plain, witty language..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category</label>
+              <select class="form-select" id="gCategory">
+                <option value="cognitive">Cognitive</option>
+                <option value="social">Social</option>
+                <option value="developmental">Developmental</option>
+                <option value="clinical">Clinical</option>
+                <option value="behavioral">Behavioral</option>
+                <option value="personality">Personality</option>
+                <option value="neuroscience">Neuroscience</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tags <span class="hint">(comma-separated)</span></label>
+              <input type="text" class="form-input" id="gTags" placeholder="e.g., Biases, Decision Making">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Blog Link URL <span class="hint">(optional)</span></label>
+            <input type="text" class="form-input" id="gBlogLink" placeholder="e.g., blog/cognitive-dissonance.html">
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div>
+          <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--ink-light);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.04em;">Preview</label>
+          <div class="preview-card" id="glossaryPreviewCard">
+            <div class="preview-card__term" id="prevTerm">Term Name</div>
+            <div class="preview-card__aka" id="prevAka">AKA: "..."</div>
+            <div class="preview-card__def" id="prevDef">Definition will appear here.</div>
+            <div class="preview-card__tags" id="prevTags"></div>
+            <span class="preview-card__link" id="prevLink" style="display:none;">Read the deep dive &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeGlossaryModal()">Cancel</button>
+        <button class="btn btn--primary" id="glossaryModalSaveBtn" onclick="saveGlossaryTerm()">Add Term</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Confirm Delete Modal ==================== -->
+  <div class="modal-overlay" id="confirmModal" style="display:none;" onclick="if(event.target===this)closeConfirmModal()">
+    <div class="modal" style="max-width:420px;">
+      <div class="modal__header">
+        <h3 class="modal__title">Confirm Delete</h3>
+        <button class="modal__close" onclick="closeConfirmModal()">&times;</button>
+      </div>
+      <p id="confirmMessage" style="color:var(--ink-light);font-size:0.95rem;">Are you sure you want to delete this item?</p>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeConfirmModal()">Cancel</button>
+        <button class="btn btn--danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ==========================================================
+    //  STATE
+    // ==========================================================
+    let glossary = [];
+    let posts = [];
+    let editingGlossaryIndex = -1;  // -1 = adding new
+    let editingPostIndex = -1;
+    let glossarySortKey = 'term';
+    let glossarySortAsc = true;
+    let lastSavedTime = null;
+    let autoSaveInterval = null;
+
+    // ==========================================================
+    //  INIT
+    // ==========================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initTabs();
+      loadData();
+      initBlogPreview();
+      initBlogColorPreview();
+      initGlossaryModalPreview();
+      initAutoSave();
+      initKeyboardShortcuts();
+      loadSettings();
+
+      // Set default date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('blogDate').value = today;
+    });
+
+    // ==========================================================
+    //  TABS
+    // ==========================================================
+    function initTabs() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+      });
+    }
+
+    // ==========================================================
+    //  DATA LOADING
+    // ==========================================================
+    async function loadData() {
+      // Try localStorage first, then fetch
+      const lsGlossary = localStorage.getItem('soe_glossary');
+      const lsPosts = localStorage.getItem('soe_posts');
+
+      if (lsGlossary) {
+        try { glossary = JSON.parse(lsGlossary); } catch(e) { glossary = []; }
+      }
+      if (lsPosts) {
+        try { posts = JSON.parse(lsPosts); } catch(e) { posts = []; }
+      }
+
+      // Also try to fetch from data files
+      if (!lsGlossary) {
+        try {
+          const resp = await fetch('data/glossary.json');
+          if (resp.ok) {
+            glossary = await resp.json();
+            localStorage.setItem('soe_glossary', JSON.stringify(glossary));
+          }
+        } catch(e) {
+          if (!glossary.length) {
+            showToast('Could not load glossary.json. Starting with empty glossary. You can add terms manually.', 'warning');
+          }
+        }
+      }
+
+      if (!lsPosts) {
+        try {
+          const resp = await fetch('data/posts.json');
+          if (resp.ok) {
+            posts = await resp.json();
+            localStorage.setItem('soe_posts', JSON.stringify(posts));
+          }
+        } catch(e) {
+          if (!posts.length) {
+            showToast('Could not load posts.json. Starting with empty posts list.', 'warning');
+          }
+        }
+      }
+
+      renderGlossaryTable();
+      renderPostsTable();
+    }
+
+    // ==========================================================
+    //  AUTO-SAVE
+    // ==========================================================
+    function initAutoSave() {
+      autoSaveInterval = setInterval(() => {
+        localStorage.setItem('soe_glossary', JSON.stringify(glossary));
+        localStorage.setItem('soe_posts', JSON.stringify(posts));
+        saveBlogDraft();
+        lastSavedTime = new Date();
+        updateStatusText();
+      }, 30000);
+    }
+
+    function updateStatusText() {
+      const el = document.getElementById('statusText');
+      if (!lastSavedTime) { el.textContent = 'Ready'; return; }
+      const diff = Math.round((Date.now() - lastSavedTime.getTime()) / 1000);
+      if (diff < 60) { el.textContent = 'Auto-saved just now'; }
+      else { el.textContent = 'Auto-saved ' + Math.floor(diff / 60) + 'm ago'; }
+    }
+
+    setInterval(updateStatusText, 15000);
+
+    function saveBlogDraft() {
+      const draft = {
+        title: document.getElementById('blogTitle').value,
+        subtitle: document.getElementById('blogSubtitle').value,
+        tag: document.getElementById('blogTag').value,
+        date: document.getElementById('blogDate').value,
+        readTime: document.getElementById('blogReadTime').value,
+        excerpt: document.getElementById('blogExcerpt').value,
+        filename: document.getElementById('blogFilename').value,
+        color1: document.getElementById('blogColor1').value,
+        color2: document.getElementById('blogColor2').value,
+        content: document.getElementById('blogContent').value,
+      };
+      localStorage.setItem('soe_blog_draft', JSON.stringify(draft));
+    }
+
+    // ==========================================================
+    //  KEYBOARD SHORTCUTS
+    // ==========================================================
+    function initKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const activeTab = document.querySelector('.tab-btn.active');
+          if (!activeTab) return;
+          switch (activeTab.dataset.tab) {
+            case 'glossary': saveGlossaryJSON(); break;
+            case 'blog': generateBlogHTML(); break;
+            case 'settings': saveSettings(); break;
+          }
+        }
+      });
+    }
+
+    // ==========================================================
+    //  TOASTS
+    // ==========================================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const icons = { success: '\u2705', warning: '\u26A0\uFE0F', error: '\u274C' };
+      toast.className = 'toast toast--' + type;
+      toast.innerHTML = '<span>' + (icons[type] || '') + '</span><span>' + message + '</span>';
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'toastOut 0.3s ease-in forwards';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // ==========================================================
+    //  CONFIRM MODAL
+    // ==========================================================
+    function showConfirm(message, onConfirm) {
+      document.getElementById('confirmMessage').textContent = message;
+      document.getElementById('confirmModal').style.display = 'flex';
+      const btn = document.getElementById('confirmDeleteBtn');
+      // Remove old listeners
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      newBtn.addEventListener('click', () => {
+        onConfirm();
+        closeConfirmModal();
+      });
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').style.display = 'none';
+    }
+
+    // ==========================================================
+    //  GLOSSARY: RENDER TABLE
+    // ==========================================================
+    function renderGlossaryTable() {
+      const tbody = document.getElementById('glossaryTableBody');
+      const empty = document.getElementById('glossaryEmpty');
+      const searchVal = (document.getElementById('glossarySearch').value || '').toLowerCase();
+
+      document.getElementById('glossaryCount').textContent = glossary.length;
+
+      let filtered = glossary.map((item, idx) => ({ ...item, _idx: idx }));
+      if (searchVal) {
+        filtered = filtered.filter(g =>
+          (g.term || '').toLowerCase().includes(searchVal) ||
+          (g.aka || '').toLowerCase().includes(searchVal) ||
+          (g.definition || '').toLowerCase().includes(searchVal) ||
+          (g.category || '').toLowerCase().includes(searchVal) ||
+          (g.tags || []).join(' ').toLowerCase().includes(searchVal)
+        );
+      }
+
+      // Sort
+      filtered.sort((a, b) => {
+        const aVal = (a[glossarySortKey] || '').toString().toLowerCase();
+        const bVal = (b[glossarySortKey] || '').toString().toLowerCase();
+        return glossarySortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+
+      empty.style.display = 'none';
+      tbody.innerHTML = filtered.map(g => {
+        const tags = (g.tags || []).map(t => '<span class="badge">' + escapeHtml(t) + '</span>').join(' ');
+        const link = g.blogLink ? '<a href="' + escapeHtml(g.blogLink) + '" style="color:var(--lemon-dark);font-size:0.82rem;">' + escapeHtml(g.blogLink) + '</a>' : '<span style="color:var(--gray-400);font-size:0.82rem;">&mdash;</span>';
+        return '<tr>' +
+          '<td class="td-term" onclick="editGlossaryTerm(' + g._idx + ')">' + escapeHtml(g.term || '') + '</td>' +
+          '<td style="font-size:0.82rem;color:var(--gray-600);font-style:italic;">' + escapeHtml(g.aka || '') + '</td>' +
+          '<td><span class="td-category">' + escapeHtml(g.category || '') + '</span></td>' +
+          '<td>' + tags + '</td>' +
+          '<td>' + link + '</td>' +
+          '<td class="td-actions"><button class="btn btn--secondary btn--small" onclick="editGlossaryTerm(' + g._idx + ')">Edit</button> <button class="btn btn--danger btn--small" onclick="deleteGlossaryTerm(' + g._idx + ')">Delete</button></td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    function sortGlossary(key) {
+      if (glossarySortKey === key) {
+        glossarySortAsc = !glossarySortAsc;
+      } else {
+        glossarySortKey = key;
+        glossarySortAsc = true;
+      }
+      renderGlossaryTable();
+    }
+
+    // Search
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('glossarySearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', () => renderGlossaryTable());
+      }
+    });
+
+    // ==========================================================
+    //  GLOSSARY: MODAL
+    // ==========================================================
+    function openGlossaryModal(index) {
+      editingGlossaryIndex = (index !== undefined) ? index : -1;
+      const modal = document.getElementById('glossaryModal');
+      const title = document.getElementById('glossaryModalTitle');
+      const saveBtn = document.getElementById('glossaryModalSaveBtn');
+
+      if (editingGlossaryIndex >= 0) {
+        const g = glossary[editingGlossaryIndex];
+        document.getElementById('gTerm').value = g.term || '';
+        document.getElementById('gAka').value = g.aka || '';
+        document.getElementById('gDef').value = g.definition || '';
+        document.getElementById('gCategory').value = g.category || 'cognitive';
+        document.getElementById('gTags').value = (g.tags || []).join(', ');
+        document.getElementById('gBlogLink').value = g.blogLink || '';
+        title.textContent = 'Edit Term';
+        saveBtn.textContent = 'Save Changes';
+      } else {
+        document.getElementById('gTerm').value = '';
+        document.getElementById('gAka').value = '';
+        document.getElementById('gDef').value = '';
+        document.getElementById('gCategory').value = 'cognitive';
+        document.getElementById('gTags').value = '';
+        document.getElementById('gBlogLink').value = '';
+        title.textContent = 'Add New Term';
+        saveBtn.textContent = 'Add Term';
+      }
+
+      updateGlossaryPreview();
+      modal.style.display = 'flex';
+      document.getElementById('gTerm').focus();
+    }
+
+    function closeGlossaryModal() {
+      document.getElementById('glossaryModal').style.display = 'none';
+      editingGlossaryIndex = -1;
+    }
+
+    function saveGlossaryTerm() {
+      const term = document.getElementById('gTerm').value.trim();
+      const aka = document.getElementById('gAka').value.trim();
+      const def = document.getElementById('gDef').value.trim();
+      const category = document.getElementById('gCategory').value;
+      const tags = document.getElementById('gTags').value.split(',').map(t => t.trim()).filter(t => t);
+      const blogLink = document.getElementById('gBlogLink').value.trim();
+
+      if (!term) { showToast('Term name is required.', 'error'); return; }
+      if (!def) { showToast('Definition is required.', 'error'); return; }
+
+      const entry = { term, aka, definition: def, category, tags, blogLink };
+
+      if (editingGlossaryIndex >= 0) {
+        glossary[editingGlossaryIndex] = entry;
+        showToast('Term "' + term + '" updated.');
+      } else {
+        glossary.push(entry);
+        showToast('Term "' + term + '" added.');
+      }
+
+      localStorage.setItem('soe_glossary', JSON.stringify(glossary));
+      renderGlossaryTable();
+      closeGlossaryModal();
+    }
+
+    function editGlossaryTerm(index) {
+      openGlossaryModal(index);
+    }
+
+    function deleteGlossaryTerm(index) {
+      const term = glossary[index] ? glossary[index].term : 'this term';
+      showConfirm('Are you sure you want to delete "' + term + '"? This cannot be undone.', () => {
+        glossary.splice(index, 1);
+        localStorage.setItem('soe_glossary', JSON.stringify(glossary));
+        renderGlossaryTable();
+        showToast('Term deleted.');
+      });
+    }
+
+    // ==========================================================
+    //  GLOSSARY: MODAL LIVE PREVIEW
+    // ==========================================================
+    function initGlossaryModalPreview() {
+      ['gTerm', 'gAka', 'gDef', 'gTags', 'gBlogLink', 'gCategory'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateGlossaryPreview);
+      });
+    }
+
+    function updateGlossaryPreview() {
+      const term = document.getElementById('gTerm').value || 'Term Name';
+      const aka = document.getElementById('gAka').value;
+      const def = document.getElementById('gDef').value || 'Definition will appear here.';
+      const tagsStr = document.getElementById('gTags').value;
+      const blogLink = document.getElementById('gBlogLink').value;
+
+      document.getElementById('prevTerm').textContent = term;
+      document.getElementById('prevAka').textContent = aka ? 'AKA: "' + aka + '"' : '';
+      document.getElementById('prevAka').style.display = aka ? 'block' : 'none';
+      document.getElementById('prevDef').textContent = def;
+
+      const tagsContainer = document.getElementById('prevTags');
+      const tags = tagsStr.split(',').map(t => t.trim()).filter(t => t);
+      tagsContainer.innerHTML = tags.map(t => '<span class="preview-card__tag">' + escapeHtml(t) + '</span>').join('');
+
+      const linkEl = document.getElementById('prevLink');
+      linkEl.style.display = blogLink ? 'inline' : 'none';
+    }
+
+    // ==========================================================
+    //  GLOSSARY: SAVE / COPY
+    // ==========================================================
+    function saveGlossaryJSON() {
+      const json = JSON.stringify(glossary, null, 2);
+      downloadFile('glossary.json', json, 'application/json');
+      showToast('glossary.json downloaded!');
+      lastSavedTime = new Date();
+      updateStatusText();
+    }
+
+    function copyGlossaryJSON() {
+      const json = JSON.stringify(glossary, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        showToast('Glossary JSON copied to clipboard!');
+      }).catch(() => {
+        showToast('Could not copy to clipboard.', 'error');
+      });
+    }
+
+    // ==========================================================
+    //  POSTS: RENDER TABLE
+    // ==========================================================
+    function renderPostsTable() {
+      const tbody = document.getElementById('postsTableBody');
+      const empty = document.getElementById('postsEmpty');
+      document.getElementById('postsCount').textContent = posts.length;
+
+      if (posts.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+
+      empty.style.display = 'none';
+      tbody.innerHTML = posts.map((p, idx) => {
+        const grad = 'linear-gradient(135deg, ' + (p.color1 || '#ccc') + ' 0%, ' + (p.color2 || '#aaa') + ' 100%)';
+        return '<tr>' +
+          '<td><span class="gradient-swatch" style="background:' + grad + '"></span></td>' +
+          '<td style="font-weight:600;">' + escapeHtml(p.title || '') + '</td>' +
+          '<td><span class="td-category">' + escapeHtml(p.tag || '') + '</span></td>' +
+          '<td style="font-size:0.82rem;">' + escapeHtml(p.date || '') + '</td>' +
+          '<td style="font-size:0.82rem;">' + escapeHtml(p.readTime || '') + '</td>' +
+          '<td class="td-actions">' +
+            '<button class="btn btn--secondary btn--small" onclick="loadPostToForm(' + idx + ')">Edit</button> ' +
+            '<button class="btn btn--danger btn--small" onclick="deletePost(' + idx + ')">Delete</button>' +
+          '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    function loadPostToForm(index) {
+      editingPostIndex = index;
+      const p = posts[index];
+      document.getElementById('blogTitle').value = p.title || '';
+      document.getElementById('blogSubtitle').value = p.subtitle || '';
+      document.getElementById('blogTag').value = p.tag || 'Study Translation';
+      document.getElementById('blogDate').value = p.date || '';
+      document.getElementById('blogReadTime').value = p.readTime || '';
+      document.getElementById('blogExcerpt').value = p.excerpt || '';
+      document.getElementById('blogFilename').value = p.filename || '';
+      document.getElementById('blogColor1').value = p.color1 || '#FF6B6B';
+      document.getElementById('blogColor2').value = p.color2 || '#ee5a24';
+      document.getElementById('blogContent').value = p.content || '';
+      updateBlogColorPreview();
+      updateBlogPreview();
+      document.getElementById('blogFormTitle').textContent = 'Editing: ' + (p.title || 'Post');
+      showToast('Post loaded into form. Make changes and save.');
+      // Scroll to form
+      document.getElementById('blogFormTitle').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function deletePost(index) {
+      const title = posts[index] ? posts[index].title : 'this post';
+      showConfirm('Are you sure you want to remove "' + title + '" from the posts listing?', () => {
+        posts.splice(index, 1);
+        localStorage.setItem('soe_posts', JSON.stringify(posts));
+        renderPostsTable();
+        showToast('Post removed from listing.');
+      });
+    }
+
+    function clearBlogForm() {
+      editingPostIndex = -1;
+      ['blogTitle','blogSubtitle','blogExcerpt','blogFilename','blogContent','blogReadTime'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('blogTag').value = 'Study Translation';
+      document.getElementById('blogDate').value = new Date().toISOString().split('T')[0];
+      document.getElementById('blogColor1').value = '#FF6B6B';
+      document.getElementById('blogColor2').value = '#ee5a24';
+      updateBlogColorPreview();
+      updateBlogPreview();
+      document.getElementById('blogFormTitle').textContent = 'Create New Post';
+    }
+
+    // ==========================================================
+    //  POSTS: SAVE / COPY
+    // ==========================================================
+    function savePostsJSON() {
+      // Save only metadata (no content) for the listing
+      const listing = posts.map(p => ({
+        title: p.title,
+        subtitle: p.subtitle,
+        tag: p.tag,
+        date: p.date,
+        readTime: p.readTime,
+        excerpt: p.excerpt,
+        filename: p.filename,
+        color1: p.color1,
+        color2: p.color2,
+      }));
+      const json = JSON.stringify(listing, null, 2);
+      downloadFile('posts.json', json, 'application/json');
+      showToast('posts.json downloaded!');
+      lastSavedTime = new Date();
+      updateStatusText();
+    }
+
+    function copyPostsJSON() {
+      const listing = posts.map(p => ({
+        title: p.title,
+        subtitle: p.subtitle,
+        tag: p.tag,
+        date: p.date,
+        readTime: p.readTime,
+        excerpt: p.excerpt,
+        filename: p.filename,
+        color1: p.color1,
+        color2: p.color2,
+      }));
+      const json = JSON.stringify(listing, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        showToast('Posts JSON copied to clipboard!');
+      }).catch(() => {
+        showToast('Could not copy to clipboard.', 'error');
+      });
+    }
+
+    function addToPostsJSON() {
+      const title = document.getElementById('blogTitle').value.trim();
+      if (!title) { showToast('Post title is required.', 'error'); return; }
+
+      const entry = {
+        title: title,
+        subtitle: document.getElementById('blogSubtitle').value.trim(),
+        tag: document.getElementById('blogTag').value,
+        date: document.getElementById('blogDate').value,
+        readTime: document.getElementById('blogReadTime').value.trim(),
+        excerpt: document.getElementById('blogExcerpt').value.trim(),
+        filename: document.getElementById('blogFilename').value.trim(),
+        color1: document.getElementById('blogColor1').value,
+        color2: document.getElementById('blogColor2').value,
+        content: document.getElementById('blogContent').value,
+      };
+
+      if (editingPostIndex >= 0) {
+        posts[editingPostIndex] = entry;
+        showToast('Post "' + title + '" updated in listing.');
+      } else {
+        posts.push(entry);
+        showToast('Post "' + title + '" added to listing.');
+      }
+
+      localStorage.setItem('soe_posts', JSON.stringify(posts));
+      renderPostsTable();
+    }
+
+    // ==========================================================
+    //  BLOG: PREVIEW
+    // ==========================================================
+    function initBlogPreview() {
+      ['blogTitle','blogSubtitle','blogTag','blogDate','blogReadTime','blogContent'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateBlogPreview);
+      });
+      // Load draft
+      const draft = localStorage.getItem('soe_blog_draft');
+      if (draft) {
+        try {
+          const d = JSON.parse(draft);
+          if (d.title) document.getElementById('blogTitle').value = d.title;
+          if (d.subtitle) document.getElementById('blogSubtitle').value = d.subtitle;
+          if (d.tag) document.getElementById('blogTag').value = d.tag;
+          if (d.date) document.getElementById('blogDate').value = d.date;
+          if (d.readTime) document.getElementById('blogReadTime').value = d.readTime;
+          if (d.excerpt) document.getElementById('blogExcerpt').value = d.excerpt;
+          if (d.filename) document.getElementById('blogFilename').value = d.filename;
+          if (d.color1) document.getElementById('blogColor1').value = d.color1;
+          if (d.color2) document.getElementById('blogColor2').value = d.color2;
+          if (d.content) document.getElementById('blogContent').value = d.content;
+          updateBlogColorPreview();
+          updateBlogPreview();
+        } catch(e) {}
+      }
+    }
+
+    function updateBlogPreview() {
+      const title = document.getElementById('blogTitle').value || 'Post Title';
+      const subtitle = document.getElementById('blogSubtitle').value;
+      const tag = document.getElementById('blogTag').value;
+      const date = document.getElementById('blogDate').value;
+      const readTime = document.getElementById('blogReadTime').value;
+      const content = document.getElementById('blogContent').value;
+
+      const formattedDate = date ? new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+      let html = '';
+      html += '<span class="preview-tag">' + escapeHtml(tag) + '</span>';
+      html += '<h1>' + escapeHtml(title) + '</h1>';
+      if (subtitle) html += '<p class="preview-subtitle">' + escapeHtml(subtitle) + '</p>';
+      html += '<div class="preview-meta">' + escapeHtml(formattedDate) + (readTime ? ' &middot; ' + escapeHtml(readTime) : '') + '</div>';
+      html += content; // Content is raw HTML
+
+      document.getElementById('blogPreview').innerHTML = html;
+    }
+
+    // ==========================================================
+    //  BLOG: COLOR PREVIEW
+    // ==========================================================
+    function initBlogColorPreview() {
+      document.getElementById('blogColor1').addEventListener('input', updateBlogColorPreview);
+      document.getElementById('blogColor2').addEventListener('input', updateBlogColorPreview);
+    }
+
+    function updateBlogColorPreview() {
+      const c1 = document.getElementById('blogColor1').value;
+      const c2 = document.getElementById('blogColor2').value;
+      document.getElementById('blogColorPreview').style.background = 'linear-gradient(135deg, ' + c1 + ' 0%, ' + c2 + ' 100%)';
+    }
+
+    // ==========================================================
+    //  BLOG: TOOLBAR SNIPPETS
+    // ==========================================================
+    function insertSnippet(type) {
+      const textarea = document.getElementById('blogContent');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      let snippet = '';
+
+      switch (type) {
+        case 'bold':
+          snippet = '<strong>' + (selected || 'bold text') + '</strong>';
+          break;
+        case 'italic':
+          snippet = '<em>' + (selected || 'italic text') + '</em>';
+          break;
+        case 'h2':
+          snippet = '\n<h2>' + (selected || 'Section Heading') + '</h2>\n';
+          break;
+        case 'h3':
+          snippet = '\n<h3>' + (selected || 'Sub-heading') + '</h3>\n';
+          break;
+        case 'blockquote':
+          snippet = '\n<blockquote>\n  <p>' + (selected || 'Quote text here...') + '</p>\n</blockquote>\n';
+          break;
+        case 'callout-study':
+          snippet = '\n<div class="callout callout--study">\n  <div class="callout__label">The Paper</div>\n  <p>' + (selected || 'Study details here...') + '</p>\n</div>\n';
+          break;
+        case 'callout-snarky':
+          snippet = '\n<div class="callout callout--snarky">\n  <div class="callout__label">Snarky Sidebar</div>\n  <p>' + (selected || 'Snarky commentary here...') + '</p>\n</div>\n';
+          break;
+        case 'ul':
+          snippet = '\n<ul>\n  <li>' + (selected || 'List item') + '</li>\n  <li>Another item</li>\n</ul>\n';
+          break;
+        case 'ol':
+          snippet = '\n<ol>\n  <li>' + (selected || 'First item') + '</li>\n  <li>Second item</li>\n</ol>\n';
+          break;
+        case 'p':
+          snippet = '\n<p>' + (selected || 'Paragraph text...') + '</p>\n';
+          break;
+        case 'hr':
+          snippet = '\n<hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-200);">\n';
+          break;
+      }
+
+      textarea.value = textarea.value.substring(0, start) + snippet + textarea.value.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + snippet.length;
+      textarea.focus();
+      updateBlogPreview();
+    }
+
+    // ==========================================================
+    //  BLOG: GENERATE HTML
+    // ==========================================================
+    function generateBlogHTML() {
+      const title = document.getElementById('blogTitle').value.trim();
+      const subtitle = document.getElementById('blogSubtitle').value.trim();
+      const tag = document.getElementById('blogTag').value;
+      const date = document.getElementById('blogDate').value;
+      const readTime = document.getElementById('blogReadTime').value.trim();
+      const content = document.getElementById('blogContent').value;
+      const filename = document.getElementById('blogFilename').value.trim() || 'new-post';
+
+      if (!title) { showToast('Post title is required.', 'error'); return; }
+
+      const formattedDate = date ? new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(title)} — Squeeze of Everything</title>
+  <meta name="description" content="${escapeHtml(subtitle)}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <span>🍋</span> Squeeze of Everything
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+        <li><a href="../glossary.html">Psych Glossary</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <article class="article">
+    <div class="container--narrow">
+
+      <a href="../blog.html" class="back-link">&larr; Back to all posts</a>
+
+      <header class="article__header">
+        <span class="article__tag">${escapeHtml(tag)}</span>
+        <h1 class="article__title">${escapeHtml(title)}</h1>
+        ${subtitle ? '<p class="article__subtitle">' + escapeHtml(subtitle) + '</p>' : ''}
+        <div class="article__meta">
+          <span>${formattedDate}</span> &middot; <span>${escapeHtml(readTime)}</span>
+        </div>
+      </header>
+
+      <div class="article__content">
+
+${content}
+
+      </div>
+    </div>
+  </article>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Get Squeezed Weekly 🍋</h2>
+      <p>One psychology concept per week, translated from Academic to Human. No spam, no toxic positivity.</p>
+      <form class="newsletter__form">
+        <input type="email" class="newsletter__input" placeholder="your@email.com" required>
+        <button type="submit" class="newsletter__btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <ul class="footer__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../glossary.html">Glossary</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <p>🍋 Squeeze of Everything — Practical Psychology for Humans</p>
+      <p style="margin-top: 0.5rem;">&copy; 2026. Made with curiosity and mild irreverence.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"><\/script>
+</body>
+</html>`;
+
+      downloadFile(filename + '.html', html, 'text/html');
+      showToast('Blog post HTML downloaded as "' + filename + '.html". Place it in the /blog/ folder.');
+      lastSavedTime = new Date();
+      updateStatusText();
+    }
+
+    // ==========================================================
+    //  SETTINGS
+    // ==========================================================
+    function loadSettings() {
+      const saved = localStorage.getItem('soe_settings');
+      if (!saved) return;
+      try {
+        const s = JSON.parse(saved);
+        if (s.siteName) document.getElementById('settingSiteName').value = s.siteName;
+        if (s.tagline) document.getElementById('settingTagline').value = s.tagline;
+        if (s.about) document.getElementById('settingAbout').value = s.about;
+        if (s.newsletterH) document.getElementById('settingNewsletterH').value = s.newsletterH;
+        if (s.newsletterP) document.getElementById('settingNewsletterP').value = s.newsletterP;
+        if (s.footer1) document.getElementById('settingFooter1').value = s.footer1;
+        if (s.footer2) document.getElementById('settingFooter2').value = s.footer2;
+      } catch(e) {}
+    }
+
+    function saveSettings() {
+      const s = {
+        siteName: document.getElementById('settingSiteName').value,
+        tagline: document.getElementById('settingTagline').value,
+        about: document.getElementById('settingAbout').value,
+        newsletterH: document.getElementById('settingNewsletterH').value,
+        newsletterP: document.getElementById('settingNewsletterP').value,
+        footer1: document.getElementById('settingFooter1').value,
+        footer2: document.getElementById('settingFooter2').value,
+      };
+      localStorage.setItem('soe_settings', JSON.stringify(s));
+      showToast('Settings saved to localStorage.');
+      lastSavedTime = new Date();
+      updateStatusText();
+    }
+
+    function exportSettings() {
+      const s = {
+        siteName: document.getElementById('settingSiteName').value,
+        tagline: document.getElementById('settingTagline').value,
+        about: document.getElementById('settingAbout').value,
+        newsletterH: document.getElementById('settingNewsletterH').value,
+        newsletterP: document.getElementById('settingNewsletterP').value,
+        footer1: document.getElementById('settingFooter1').value,
+        footer2: document.getElementById('settingFooter2').value,
+      };
+      downloadFile('site-settings.json', JSON.stringify(s, null, 2), 'application/json');
+      showToast('Settings exported as site-settings.json.');
+    }
+
+    // ==========================================================
+    //  UTILITIES
+    // ==========================================================
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function downloadFile(filename, content, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>

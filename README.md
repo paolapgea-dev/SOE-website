@@ -1,4 +1,4 @@
-# 🍋 Squeeze of Everything
+# 🍋 Science of Efficiency (SOE)
 
 **Practical Psychology for Humans**
 

@@ -1,0 +1,434 @@
+[
+  {
+    "id": "cognitive-dissonance",
+    "term": "Cognitive Dissonance",
+    "aka": "I meant to do that",
+    "definition": "The mental discomfort you feel when holding two contradictory beliefs. Your brain's PR department kicks in and rewrites history so you still feel like a rational person. Spoiler: you're not.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Biases"],
+    "blogLink": "blog/cognitive-dissonance.html"
+  },
+  {
+    "id": "confirmation-bias",
+    "term": "Confirmation Bias",
+    "aka": "Googling until you're right",
+    "definition": "The tendency to search for, interpret, and remember information that confirms what you already believe. It's the reason your uncle is so confident about those conspiracy theories \u2014 he did \"research.\"",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Biases"],
+    "blogLink": ""
+  },
+  {
+    "id": "dunning-kruger-effect",
+    "term": "Dunning-Kruger Effect",
+    "aka": "Mount Stupid",
+    "definition": "People with limited competence in a domain tend to massively overestimate their ability. Meanwhile, actual experts underestimate theirs. The universe has a deeply ironic sense of humor.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Metacognition"],
+    "blogLink": "blog/dunning-kruger.html"
+  },
+  {
+    "id": "anchoring-bias",
+    "term": "Anchoring Bias",
+    "aka": "The first number wins",
+    "definition": "The first piece of information you encounter disproportionately influences all your subsequent judgments. This is why that \"was $500, now $199\" tag works on you every single time. You're welcome, retail industry.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Decision Making"],
+    "blogLink": ""
+  },
+  {
+    "id": "sunk-cost-fallacy",
+    "term": "Sunk Cost Fallacy",
+    "aka": "But I already paid for it",
+    "definition": "Continuing a behavior because of previously invested resources (time, money, effort) rather than future benefits. It's why you finish terrible movies, stay in dead-end jobs, and eat the rest of that massive burrito.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Decision Making"],
+    "blogLink": "blog/sunk-cost-fallacy.html"
+  },
+  {
+    "id": "availability-heuristic",
+    "term": "Availability Heuristic",
+    "aka": "If I can picture it, it must be common",
+    "definition": "Judging the likelihood of events based on how easily examples come to mind. This is why you think shark attacks are common (dramatic) but don't worry about falling furniture (boring, yet deadlier).",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Heuristics"],
+    "blogLink": ""
+  },
+  {
+    "id": "hindsight-bias",
+    "term": "Hindsight Bias",
+    "aka": "I knew it all along",
+    "definition": "After learning the outcome of an event, you suddenly feel like you predicted it. No, Karen, you didn't \"always know\" that relationship wouldn't work out. Your memory is just a revisionist historian.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Memory"],
+    "blogLink": ""
+  },
+  {
+    "id": "choice-overload",
+    "term": "Choice Overload",
+    "aka": "The jam study problem",
+    "definition": "Having too many options leads to decision paralysis, anxiety, and less satisfaction with whatever you choose. Explains why you spend 45 minutes choosing a Netflix show and then watch The Office again.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Decision Making"],
+    "blogLink": ""
+  },
+  {
+    "id": "peak-end-rule",
+    "term": "Peak-End Rule",
+    "aka": "The finale matters most",
+    "definition": "You judge experiences based on the most intense moment and the ending, not the average. A colonoscopy study proved this. Yes, someone designed a study about making colonoscopies feel better. Science is wild.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Memory"],
+    "blogLink": ""
+  },
+  {
+    "id": "framing-effect",
+    "term": "Framing Effect",
+    "aka": "It's all in how you say it",
+    "definition": "People react differently to the same information depending on how it's presented. \"90% survival rate\" sounds great. \"10% chance of death\" sounds terrifying. Same math. Different vibes.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Decision Making"],
+    "blogLink": ""
+  },
+  {
+    "id": "spotlight-effect",
+    "term": "Spotlight Effect",
+    "aka": "Nobody noticed your pimple",
+    "definition": "Overestimating how much other people notice about your appearance, behavior, and mistakes. You think everyone saw you trip? They were busy worrying about whether anyone noticed them trip.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Social Cognition"],
+    "blogLink": ""
+  },
+  {
+    "id": "bystander-effect",
+    "term": "Bystander Effect",
+    "aka": "Someone else will handle it",
+    "definition": "The more people who witness an emergency, the less likely any one person is to help. Everyone assumes someone else will step in. Diffusion of responsibility at its most chilling.",
+    "category": "social",
+    "tags": ["Social", "Group Behavior"],
+    "blogLink": "blog/bystander-effect.html"
+  },
+  {
+    "id": "social-proof",
+    "term": "Social Proof",
+    "aka": "Everyone else is doing it",
+    "definition": "Looking to others' behavior to determine what's correct. It's why laugh tracks work, why you check restaurant reviews, and why \"bestseller\" stickers sell more books. We're fancy herd animals.",
+    "category": "social",
+    "tags": ["Social", "Influence"],
+    "blogLink": ""
+  },
+  {
+    "id": "fundamental-attribution-error",
+    "term": "Fundamental Attribution Error",
+    "aka": "They're a jerk / I had a bad day",
+    "definition": "When someone cuts you off in traffic, they're a terrible person. When you cut someone off, you were running late. We judge others by character and ourselves by circumstance. Every. Single. Time.",
+    "category": "social",
+    "tags": ["Social", "Attribution"],
+    "blogLink": ""
+  },
+  {
+    "id": "halo-effect",
+    "term": "Halo Effect",
+    "aka": "Hot people get the benefit of the doubt",
+    "definition": "If someone is attractive, competent, or likable in one way, we assume they're great in other ways too. Attractive defendants get shorter sentences. Your handsome CEO gets credited with being \"visionary.\" Life is unfair.",
+    "category": "social",
+    "tags": ["Social", "Perception"],
+    "blogLink": ""
+  },
+  {
+    "id": "groupthink",
+    "term": "Groupthink",
+    "aka": "The meeting where nobody disagreed",
+    "definition": "When a group prioritizes consensus over critical thinking. Everyone nods along, nobody raises concerns, and then you get the Bay of Pigs invasion. Or your company's last rebrand. Same energy.",
+    "category": "social",
+    "tags": ["Social", "Group Behavior"],
+    "blogLink": ""
+  },
+  {
+    "id": "in-group-bias",
+    "term": "In-Group Bias",
+    "aka": "My team is better because it's mine",
+    "definition": "Favoring people who belong to your group \u2014 even if the group was randomly assigned 5 minutes ago. In experiments, people will literally discriminate based on whether they were sorted into the \"blue team\" or \"red team.\" We are absurd creatures.",
+    "category": "social",
+    "tags": ["Social", "Identity"],
+    "blogLink": ""
+  },
+  {
+    "id": "reciprocity-principle",
+    "term": "Reciprocity Principle",
+    "aka": "I owe you one",
+    "definition": "When someone does something for you, you feel compelled to return the favor. This is why free samples work, why your colleague's birthday card guilts you into buying donuts, and why the Hare Krishnas give you flowers at airports.",
+    "category": "social",
+    "tags": ["Social", "Influence"],
+    "blogLink": ""
+  },
+  {
+    "id": "mere-exposure-effect",
+    "term": "Mere Exposure Effect",
+    "aka": "That song grew on me",
+    "definition": "The more you're exposed to something, the more you tend to like it. It explains why radio hits work, why you eventually love your weird neighbor, and why advertisers shove the same ad in your face 47 times.",
+    "category": "social",
+    "tags": ["Social", "Attitudes"],
+    "blogLink": ""
+  },
+  {
+    "id": "attachment-theory",
+    "term": "Attachment Theory",
+    "aka": "It all goes back to your childhood",
+    "definition": "Your early relationship with caregivers creates a blueprint for all future relationships. Secure, anxious, avoidant, or disorganized \u2014 pick your adventure. (Just kidding, it was picked for you at age 2.)",
+    "category": "developmental",
+    "tags": ["Developmental", "Relationships"],
+    "blogLink": "blog/attachment-styles.html"
+  },
+  {
+    "id": "growth-mindset",
+    "term": "Growth Mindset",
+    "aka": "Not yet vs. never",
+    "definition": "Believing your abilities can be developed through effort and learning, as opposed to a fixed mindset (believing talent is innate). Carol Dweck's research, occasionally butchered by motivational posters everywhere.",
+    "category": "developmental",
+    "tags": ["Developmental", "Motivation"],
+    "blogLink": ""
+  },
+  {
+    "id": "theory-of-mind",
+    "term": "Theory of Mind",
+    "aka": "Other people have thoughts too",
+    "definition": "The ability to understand that other people have their own beliefs, desires, and perspectives different from yours. Develops around age 4 in children. Some adults are still working on it.",
+    "category": "developmental",
+    "tags": ["Developmental", "Cognition"],
+    "blogLink": ""
+  },
+  {
+    "id": "eriksons-stages",
+    "term": "Erikson's Stages",
+    "aka": "Life crises, scheduled",
+    "definition": "Eight stages of psychosocial development, each with its own crisis. Trust vs. mistrust as a baby, identity vs. confusion as a teen, integrity vs. despair as you age. Basically a roadmap of existential drama from birth to death.",
+    "category": "developmental",
+    "tags": ["Developmental", "Lifespan"],
+    "blogLink": ""
+  },
+  {
+    "id": "cognitive-behavioral-therapy-cbt",
+    "term": "Cognitive Behavioral Therapy (CBT)",
+    "aka": "Debugging your thoughts",
+    "definition": "A therapy approach that identifies and restructures unhelpful thought patterns. Basically, your brain is running buggy code, and CBT helps you find the bugs. It's the most evidence-backed therapy we have, and it's not even close.",
+    "category": "clinical",
+    "tags": ["Clinical", "Therapy"],
+    "blogLink": ""
+  },
+  {
+    "id": "learned-helplessness",
+    "term": "Learned Helplessness",
+    "aka": "Why bother trying",
+    "definition": "When repeated exposure to uncontrollable negative events leads you to stop trying, even when you actually could escape. Seligman discovered this and then spent the rest of his career trying to fix it. That's called character development.",
+    "category": "clinical",
+    "tags": ["Clinical", "Depression"],
+    "blogLink": ""
+  },
+  {
+    "id": "imposter-syndrome",
+    "term": "Imposter Syndrome",
+    "aka": "They're going to find out I'm a fraud",
+    "definition": "The persistent feeling that you're faking your competence and will be exposed any day now. Affects roughly 70% of people at some point. If you're reading this and nodding \u2014 congratulations, you're statistically normal.",
+    "category": "clinical",
+    "tags": ["Clinical", "Self-Perception"],
+    "blogLink": ""
+  },
+  {
+    "id": "rumination",
+    "term": "Rumination",
+    "aka": "Your brain's infinite replay button",
+    "definition": "Repetitively thinking about the causes, consequences, and symptoms of distress without doing anything about it. It's like your brain is a terrible DJ who only plays one embarrassing song from 2003 on repeat at 3am.",
+    "category": "clinical",
+    "tags": ["Clinical", "Anxiety"],
+    "blogLink": ""
+  },
+  {
+    "id": "placebo-effect",
+    "term": "Placebo Effect",
+    "aka": "Your brain is the real drug",
+    "definition": "Experiencing real improvement from a treatment that has no active ingredients, purely because you believe it will work. Your brain can literally reduce pain because someone gave you a sugar pill with confidence. We are magnificent idiots.",
+    "category": "clinical",
+    "tags": ["Clinical", "Research"],
+    "blogLink": ""
+  },
+  {
+    "id": "classical-conditioning",
+    "term": "Classical Conditioning",
+    "aka": "Pavlov's dogs, and also you",
+    "definition": "Learning to associate a neutral stimulus with a meaningful one. Pavlov rang a bell before feeding dogs, and soon the bell alone made them drool. Your phone notification sound does the same thing to you. You are the dog.",
+    "category": "behavioral",
+    "tags": ["Behavioral", "Learning"],
+    "blogLink": ""
+  },
+  {
+    "id": "operant-conditioning",
+    "term": "Operant Conditioning",
+    "aka": "Reward the rat, shape the behavior",
+    "definition": "Learning through consequences \u2014 rewards increase behavior, punishment decreases it. B.F. Skinner's framework explains why you check social media (variable reward schedule), why your dog sits on command (treats), and why you don't touch hot stoves (ouch).",
+    "category": "behavioral",
+    "tags": ["Behavioral", "Learning"],
+    "blogLink": ""
+  },
+  {
+    "id": "hedonic-treadmill",
+    "term": "Hedonic Treadmill",
+    "aka": "Nothing stays exciting",
+    "definition": "The observed tendency to return to a relatively stable level of happiness despite major positive or negative life events. Won the lottery? Give it 6 months. Got dumped? Give it 6 months. Baseline is a tyrant.",
+    "category": "behavioral",
+    "tags": ["Behavioral", "Happiness"],
+    "blogLink": "blog/hedonic-treadmill.html"
+  },
+  {
+    "id": "loss-aversion",
+    "term": "Loss Aversion",
+    "aka": "Losing $20 hurts more than finding $20 feels good",
+    "definition": "Losses are psychologically about twice as powerful as gains. This is why you hold onto losing stocks, why free trials convert, and why people will fight harder to keep something than to gain something equivalent. Kahneman & Tversky's greatest hit.",
+    "category": "behavioral",
+    "tags": ["Behavioral", "Decision Making"],
+    "blogLink": ""
+  },
+  {
+    "id": "habit-loop",
+    "term": "Habit Loop",
+    "aka": "Cue \u2192 Routine \u2192 Reward \u2192 Repeat forever",
+    "definition": "The neurological loop that governs habits: a cue triggers a routine which delivers a reward. Understanding this loop is the key to building good habits and breaking bad ones. Also explains why you open Instagram every time you're bored.",
+    "category": "behavioral",
+    "tags": ["Behavioral", "Habits"],
+    "blogLink": ""
+  },
+  {
+    "id": "big-five-personality-traits",
+    "term": "Big Five Personality Traits",
+    "aka": "OCEAN \u2014 your personality's five-star review",
+    "definition": "Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism. The most scientifically validated personality model. Unlike your Myers-Briggs result, this one actually predicts things. Sorry, INFJs.",
+    "category": "personality",
+    "tags": ["Personality", "Traits"],
+    "blogLink": ""
+  },
+  {
+    "id": "locus-of-control",
+    "term": "Locus of Control",
+    "aka": "Is it me or is it fate?",
+    "definition": "Whether you believe outcomes are controlled by you (internal) or by external forces (external). Internal locus: \"I aced that test because I studied.\" External locus: \"I aced it because the teacher was easy.\" Both can be delusional.",
+    "category": "personality",
+    "tags": ["Personality", "Control"],
+    "blogLink": ""
+  },
+  {
+    "id": "self-serving-bias",
+    "term": "Self-Serving Bias",
+    "aka": "I'm the main character",
+    "definition": "Attributing successes to your own character and failures to external factors. You got the promotion? Talent. You got fired? The company was toxic. Your brain is your biggest fan and most unreliable narrator.",
+    "category": "personality",
+    "tags": ["Personality", "Attribution"],
+    "blogLink": ""
+  },
+  {
+    "id": "narcissism",
+    "term": "Narcissism",
+    "aka": "Not just selfies",
+    "definition": "A personality trait (and at the extreme, a disorder) characterized by grandiosity, need for admiration, and lack of empathy. Exists on a spectrum. A little is healthy (confidence). A lot is... your ex. Probably.",
+    "category": "personality",
+    "tags": ["Personality", "Disorders"],
+    "blogLink": ""
+  },
+  {
+    "id": "neuroplasticity",
+    "term": "Neuroplasticity",
+    "aka": "Old dogs, new tricks",
+    "definition": "Your brain's ability to reorganize itself by forming new neural connections throughout life. It's the reason you can learn guitar at 40 and why London taxi drivers have unusually large hippocampi. Your brain is moldable. Use it.",
+    "category": "neuroscience",
+    "tags": ["Neuroscience", "Brain"],
+    "blogLink": ""
+  },
+  {
+    "id": "amygdala-hijack",
+    "term": "Amygdala Hijack",
+    "aka": "Why you yelled before you thought",
+    "definition": "When your amygdala (the brain's smoke alarm) triggers a fight-or-flight response before your prefrontal cortex (the rational adult) can intervene. It's why you snap at your partner and immediately think \"why did I just say that?\"",
+    "category": "neuroscience",
+    "tags": ["Neuroscience", "Emotions"],
+    "blogLink": ""
+  },
+  {
+    "id": "dopamine",
+    "term": "Dopamine",
+    "aka": "Not actually the 'pleasure chemical'",
+    "definition": "A neurotransmitter involved in motivation, reward anticipation, and learning. Contrary to pop science, it's more about wanting than liking. It's the craving, not the satisfaction. This is why scrolling feels urgent but never fulfilling.",
+    "category": "neuroscience",
+    "tags": ["Neuroscience", "Neurotransmitters"],
+    "blogLink": ""
+  },
+  {
+    "id": "mirror-neurons",
+    "term": "Mirror Neurons",
+    "aka": "Monkey see, monkey feel",
+    "definition": "Neurons that fire both when you perform an action and when you watch someone else do it. They may be the neural basis for empathy, learning by imitation, and why watching someone eat makes you hungry. Still debated, but very cool.",
+    "category": "neuroscience",
+    "tags": ["Neuroscience", "Empathy"],
+    "blogLink": ""
+  },
+  {
+    "id": "default-mode-network",
+    "term": "Default Mode Network",
+    "aka": "Your brain's screensaver",
+    "definition": "The network of brain regions active when you're not focused on the outside world \u2014 daydreaming, self-reflection, imagining the future. It's where creativity happens, but also where rumination lives. Your idle brain is busy being dramatic.",
+    "category": "neuroscience",
+    "tags": ["Neuroscience", "Brain Networks"],
+    "blogLink": ""
+  },
+  {
+    "id": "baader-meinhof-phenomenon",
+    "term": "Baader-Meinhof Phenomenon",
+    "aka": "Frequency illusion",
+    "definition": "Once you learn a new word or concept, you suddenly see it everywhere. You just learned \"gaslighting\"? Now everyone is gaslighting everyone. The world didn't change. Your attention filter did.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Perception"],
+    "blogLink": ""
+  },
+  {
+    "id": "zeigarnik-effect",
+    "term": "Zeigarnik Effect",
+    "aka": "Why unfinished tasks haunt you",
+    "definition": "Incomplete tasks occupy your mind more than completed ones. It's why that unanswered email nags at you, why cliffhangers work, and why writing things down on a to-do list actually reduces anxiety \u2014 your brain can finally let go.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Memory"],
+    "blogLink": ""
+  },
+  {
+    "id": "cognitive-load-theory",
+    "term": "Cognitive Load Theory",
+    "aka": "Your brain has limited RAM",
+    "definition": "Your working memory can only handle so much at once. Overload it and performance, decision-making, and willpower all tank. This is why you make terrible food choices when mentally exhausted and why IKEA instructions feel like war.",
+    "category": "cognitive",
+    "tags": ["Cognitive", "Performance"],
+    "blogLink": ""
+  },
+  {
+    "id": "pygmalion-effect",
+    "term": "Pygmalion Effect",
+    "aka": "Expectations create reality",
+    "definition": "When higher expectations lead to higher performance. Teachers who believed (falsely) that certain students were gifted saw those students actually improve more. Your expectations of people literally change their behavior. Use this power wisely.",
+    "category": "social",
+    "tags": ["Social", "Education"],
+    "blogLink": ""
+  },
+  {
+    "id": "flow-state",
+    "term": "Flow State",
+    "aka": "Being in the zone",
+    "definition": "That state of complete absorption where time disappears and everything clicks. Csikszentmihalyi found it happens when challenge meets skill at just the right level. Too easy = boredom. Too hard = anxiety. Just right = flow. It's the Goldilocks of brain states.",
+    "category": "clinical",
+    "tags": ["Clinical", "Positive Psychology"],
+    "blogLink": ""
+  },
+  {
+    "id": "emotional-regulation",
+    "term": "Emotional Regulation",
+    "aka": "Not losing it (on purpose)",
+    "definition": "The ability to manage and respond to emotional experiences in healthy ways. Not suppressing emotions \u2014 that backfires spectacularly. More like being the thermostat instead of the thermometer. Feel the feeling, choose the response.",
+    "category": "clinical",
+    "tags": ["Clinical", "Skills"],
+    "blogLink": ""
+  }
+]

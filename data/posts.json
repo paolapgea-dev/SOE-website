@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cognitive-dissonance",
+    "title": "Cognitive Dissonance: Why Your Brain Gaslights Itself",
+    "excerpt": "Festinger's classic 1957 study, but explained as if your brain is a PR department desperately spinning bad decisions into genius moves.",
+    "tag": "Study Translation",
+    "date": "2026-03-19",
+    "readingTime": "8 min read",
+    "file": "blog/cognitive-dissonance.html",
+    "gradient": "linear-gradient(135deg, #FF6B6B 0%, #ee5a24 100%)"
+  },
+  {
+    "id": "dunning-kruger",
+    "title": "The Dunning-Kruger Effect: A Love Letter to Confident Idiots",
+    "excerpt": "Why the least competent people are the most confident, and why reading this article might actually make you worse at estimating your own abilities.",
+    "tag": "Deep Dive",
+    "date": "2026-03-15",
+    "readingTime": "10 min read",
+    "file": "blog/dunning-kruger.html",
+    "gradient": "linear-gradient(135deg, #2EC4B6 0%, #1B9AAA 100%)"
+  },
+  {
+    "id": "attachment-styles",
+    "title": "Attachment Styles: Why You Text Like That",
+    "excerpt": "The science behind why some people double-text at 2am and others take 3 business days to reply with \"k\". It's not personal. It's developmental.",
+    "tag": "Concept Explainer",
+    "date": "2026-03-10",
+    "readingTime": "12 min read",
+    "file": "blog/attachment-styles.html",
+    "gradient": "linear-gradient(135deg, #FFE135 0%, #F9A825 100%)"
+  },
+  {
+    "id": "sunk-cost-fallacy",
+    "title": "The Sunk Cost Fallacy: Why You Finished That Terrible Movie",
+    "excerpt": "You've already invested 90 minutes. Might as well waste the remaining 30. This is your brain on sunk costs, and Arkes & Blumer (1985) saw it all coming.",
+    "tag": "Study Translation",
+    "date": "2026-03-05",
+    "readingTime": "7 min read",
+    "file": "blog/sunk-cost-fallacy.html",
+    "gradient": "linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%)"
+  },
+  {
+    "id": "bystander-effect",
+    "title": "The Bystander Effect: Why Nobody Helps When Everyone's Watching",
+    "excerpt": "Darley & Latan\u00e9's chilling 1968 experiments, translated: the more people who witness your emergency, the less likely any single one is to help. Cool. Cool cool cool.",
+    "tag": "Study Translation",
+    "date": "2026-02-28",
+    "readingTime": "9 min read",
+    "file": "blog/bystander-effect.html",
+    "gradient": "linear-gradient(135deg, #fd79a8 0%, #e84393 100%)"
+  },
+  {
+    "id": "hedonic-treadmill",
+    "title": "The Hedonic Treadmill: Why You're Never As Happy As You Think You'll Be",
+    "excerpt": "You got the promotion, the apartment, the thing. And yet here you are, baseline-happy again. Brickman & Campbell figured this out in 1971 and honestly it's kind of rude.",
+    "tag": "Deep Dive",
+    "date": "2026-02-20",
+    "readingTime": "11 min read",
+    "file": "blog/hedonic-treadmill.html",
+    "gradient": "linear-gradient(135deg, #00b894 0%, #00cec9 100%)"
+  }
+]
