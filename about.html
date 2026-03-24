@@ -4,12 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Science of Efficiency</title>
-  <meta name="description" content="Science of Efficiency (SOE): a slightly irreverent psychology site for curious humans.">
+  <meta name="description" content="Meet Paola Pascual, the human behind Science of Efficiency. Psychology nerd, cross-cultural communicator, lemon enthusiast.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>">
+  <style>
+    .about-intro { display: flex; gap: 3rem; align-items: flex-start; margin-bottom: 3rem; }
+    .about-intro__text { flex: 1; }
+    .about-intro__visual { flex: 0 0 200px; text-align: center; }
+    .about-intro__lemon { font-size: 8rem; line-height: 1; }
+    .about-section { margin-bottom: 3rem; }
+    .about-section h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; }
+    .about-section h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .about-section p, .about-section li { font-size: 1.05rem; line-height: 1.8; color: var(--ink-light); }
+    .about-section ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .about-section li { margin-bottom: 0.4rem; }
+    .lemon-divider { text-align: center; font-size: 1.5rem; margin: 3rem 0; letter-spacing: 1rem; opacity: 0.4; }
+    .cv { background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .cv__header { border-bottom: 3px solid var(--lemon); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .cv__header h2 { margin-bottom: 0.3rem; }
+    .cv__header p { font-style: italic; color: var(--gray-400); font-size: 0.95rem; }
+    .cv__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cv__section h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--ink); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; }
+    .cv__section p, .cv__section li { font-size: 0.95rem; line-height: 1.7; color: var(--ink-light); }
+    .cv__section ul { margin-left: 1.2rem; }
+    .cv__section li { margin-bottom: 0.3rem; }
+    .cv__full { grid-column: 1 / -1; }
+    .loves-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .loves-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-left: 4px solid var(--lemon); }
+    .loves-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.8rem; }
+    .loves-card li { font-size: 0.95rem; line-height: 1.7; color: var(--ink-light); margin-bottom: 0.3rem; }
+    .loves-card ul { margin-left: 1.2rem; }
+    .loves-card em { color: var(--gray-400); font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .about-intro { flex-direction: column-reverse; text-align: center; }
+      .about-intro__visual { flex: none; width: 100%; }
+      .cv__grid { grid-template-columns: 1fr; }
+      .loves-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -32,68 +67,146 @@
     </div>
   </nav>
 
-  <!-- About -->
-  <section class="section">
+  <!-- Hero -->
+  <section class="hero" style="padding: 4rem 0 1rem;">
     <div class="container">
-      <div class="about__content">
-        <div class="about__text">
-          <span class="section__label">About This Place</span>
-          <h2>We're the interpreter at the conference where one side speaks Academic and the other speaks Human.</h2>
-          <p>Somewhere between the self-help aisle (too peppy, suspiciously confident) and the psychology textbook section (800 pages, no jokes, costs $200), there's a gap. A lemon-shaped gap.</p>
-          <p><strong>Science of Efficiency</strong> exists to fill it. We take real academic psychology — actual papers, actual studies, actual science — and translate it into something you'd actually want to read. With analogies. And humor. And the occasional snark.</p>
-          <p>We don't do summaries. We do <em>translations</em>. There's a difference. A summary tells you what a study found. A translation helps you understand why it matters, where it breaks down, and how to actually use it in your beautifully chaotic life.</p>
-
-          <h3 style="margin-top: 2rem;">The Vibes</h3>
-          <p>Imagine if <strong>Wait But Why</strong> and <strong>Matt Haig</strong> had a baby, and that baby was raised by <strong>Douglas Adams</strong> in a library full of psychology journals. That baby grew up to have opinions about cognitive biases and a deep fondness for lemons.</p>
-          <p>That baby is this website.</p>
-
-          <h3 style="margin-top: 2rem;">What You'll Find Here</h3>
-          <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-            <li><strong>Study Translations</strong> — Real academic papers, rewritten for humans. Methods, findings, limitations, and why you should care.</li>
-            <li><strong>Concept Deep Dives</strong> — Big psychology ideas, rebuilt from scratch with analogies your brain will hold onto.</li>
-            <li><strong>The Glossary</strong> — 50+ psychology terms, each explained like a witty friend at a dinner party.</li>
-          </ul>
-
-          <h3 style="margin-top: 2rem;">Why a Lemon?</h3>
-          <p>Because life gives you research papers, and we make lemonade. Also because lemons are bright, slightly acidic, and surprisingly good for you — much like the insights on this site. And honestly? Every website needs a mascot, and we refuse to use a brain emoji like everyone else.</p>
-
-          <p style="margin-top: 2rem;"><em>"The purpose of psychology is to give us a completely different idea of the things we know best."</em> — Paul Valéry</p>
-          <p>We just add better jokes.</p>
-        </div>
-        <div class="about__visual">
-          <div class="about__lemon-big">🍋</div>
-        </div>
-      </div>
+      <span class="section__label">About</span>
+      <h1 class="hero__title">Paola Pascual</h1>
+      <p class="hero__subtitle">The human behind the lemon.</p>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">Our Principles</span>
-        <h2>How We Squeeze</h2>
-      </div>
-      <div class="card-grid">
-        <div class="blog-card">
-          <div class="blog-card__body">
-            <h3 class="blog-card__title">🔬 Real Science, No Woo</h3>
-            <p class="blog-card__excerpt">Every claim links back to actual research. We don't do "studies show" without showing the study. We also tell you when the evidence is shaky, because intellectual honesty is sexier than false certainty.</p>
+  <!-- Intro -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container container--narrow">
+
+      <div class="about-intro">
+        <div class="about-intro__text">
+          <div class="about-section">
+            <p>Hey there! I'm the human behind Science of Efficiency. It's great to have you here.</p>
+            <p>Born in Spain, my journey has taken me far from home — living and working in diverse places like the United States, Belgium, Vietnam, and Berlin.</p>
+            <p>For over a decade, I've combined my passion for psychology with my expertise in business communication and cross-cultural coaching, collaborating with startups and corporates worldwide. Currently, I'm the Head of Marketing at <strong>Talaera</strong>, a global platform empowering non-native English professionals to communicate effectively and bring their full selves to work. I also co-host the <strong>Talaera Talks</strong> podcast, where we dive into career development, culture, and communication.</p>
+            <p>With years of experience in remote work and international teams, I strongly believe in the power of psychology-based tools and effective communication for individual and team success.</p>
+            <p>This blog is where I get to be curious out loud.</p>
           </div>
         </div>
-        <div class="blog-card">
-          <div class="blog-card__body">
-            <h3 class="blog-card__title">🎭 Irreverent, Not Dismissive</h3>
-            <p class="blog-card__excerpt">We'll joke about cognitive biases, but we take the science seriously. We make fun of human nature (affectionately), not of people struggling. There's a line, and we know where it is.</p>
-          </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card__body">
-            <h3 class="blog-card__title">🌍 For Humans, Not Students</h3>
-            <p class="blog-card__excerpt">You don't need a psychology degree. You don't need to know what "operationalized" means (though we'll tell you — it's less exciting than it sounds). You just need curiosity.</p>
-          </div>
+        <div class="about-intro__visual">
+          <div class="about-intro__lemon">🍋</div>
         </div>
       </div>
+
+      <!-- Why a Lemon -->
+      <div class="about-section">
+        <h2>Why a Lemon?</h2>
+        <p>Every psychology site uses a brain emoji. I refuse. Plus, brains are overrated — they're the ones getting everything wrong in the first place.</p>
+        <p>A lemon felt right. Bright. Sharp. Tart. Good for you in ways you don't fully realize until later.</p>
+        <p>My goal with this is to squeeze the good stuff out of research papers, observations, and anything else I find interesting — and make it tangible. For you, but also for myself.</p>
+        <p>Thanks for reading. 🍋</p>
+      </div>
+
+      <div class="lemon-divider">🍋 🍋 🍋</div>
+
+      <!-- CV -->
+      <div class="about-section">
+        <div class="cv">
+          <div class="cv__header">
+            <h2>The Resume Nobody Asked For</h2>
+            <p>Bilingual human who reads psychology papers for fun</p>
+          </div>
+          <div class="cv__grid">
+            <div class="cv__section">
+              <h3>Current Role</h3>
+              <p><strong>Head of Marketing</strong> — Talaera<br>Berlin, remote, everywhere</p>
+            </div>
+            <div class="cv__section">
+              <h3>Education</h3>
+              <p>Psychology — Universidad de Valencia, Spain</p>
+              <p>A lot of accidental learning from living in 4+ countries</p>
+            </div>
+            <div class="cv__section">
+              <h3>Previous Lives</h3>
+              <ul>
+                <li>Cross-cultural communication coach</li>
+                <li>Business English trainer for international teams</li>
+                <li>Podcast co-host (Talaera Talks)</li>
+                <li>Psychology nerd disguised as a marketer</li>
+              </ul>
+            </div>
+            <div class="cv__section">
+              <h3>Languages</h3>
+              <ul>
+                <li>Spanish (native, loud)</li>
+                <li>English (fluent, professional, occasionally snarky)</li>
+                <li>A bit of everything else from living everywhere</li>
+              </ul>
+            </div>
+            <div class="cv__section cv__full">
+              <h3>Skills</h3>
+              <ul>
+                <li>Translating academic jargon into human language</li>
+                <li>Making people care about cognitive biases</li>
+                <li>Working across time zones without losing my mind (mostly)</li>
+                <li>Finding the perfect analogy for any concept</li>
+              </ul>
+            </div>
+            <div class="cv__section cv__full">
+              <h3>References</h3>
+              <p>My mom (biased but enthusiastic) and anyone who's read this blog and forwarded it to a friend.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lemon-divider">🍋 🍋 🍋</div>
+
+      <!-- Things I Love -->
+      <div class="about-section">
+        <h2>Things I Love</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--ink-light);">The stuff that feeds this blog, and my brain in general.</p>
+
+        <div class="loves-grid">
+          <div class="loves-card">
+            <h3>Newsletters I Never Skip</h3>
+            <ul>
+              <li><strong>Lenny's Newsletter</strong> <br><em>Product, growth, and career advice that's actually useful</em></li>
+              <li><strong>Growth Dives</strong> by Rosie Hoggmascall <br><em>Sharp, detailed breakdowns of how companies grow</em></li>
+              <li><strong>The Slice</strong> by Talaera <br><em>Yes, I'm biased, but it's genuinely good</em></li>
+            </ul>
+          </div>
+
+          <div class="loves-card">
+            <h3>Books That Rewired Something</h3>
+            <ul>
+              <li><strong>Thinking, Fast and Slow</strong> — Kahneman <br><em>The one that started all of this</em></li>
+              <li><strong>The Hitchhiker's Guide to the Galaxy</strong> — Adams <br><em>The tone I aspire to</em></li>
+              <li><strong>Reasons to Stay Alive</strong> — Haig <br><em>Warm, honest, important</em></li>
+              <li><strong>Influence</strong> — Cialdini <br><em>Psychology meets persuasion meets "oh no, I've been manipulated"</em></li>
+              <li><strong>Atomic Habits</strong> — Clear <br><em>Simple ideas, executed well</em></li>
+            </ul>
+          </div>
+
+          <div class="loves-card">
+            <h3>Podcasts on Rotation</h3>
+            <ul>
+              <li><strong>Huberman Lab</strong> <br><em>When I want to feel scientifically productive</em></li>
+              <li><strong>Talaera Talks</strong> <br><em>Obviously</em></li>
+              <li><strong>Hidden Brain</strong> <br><em>Shankar Vedantam makes everything interesting</em></li>
+            </ul>
+          </div>
+
+          <div class="loves-card">
+            <h3>Random Things That Make Me Happy</h3>
+            <ul>
+              <li>Lemons (obviously)</li>
+              <li>Long walks with no destination</li>
+              <li>That moment when a psychology concept clicks and you see it everywhere</li>
+              <li>Good analogies</li>
+              <li>Coffee in the morning, wine in the evening, water in between (allegedly)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -120,7 +233,7 @@
         <li><a href="editor.html">Editor</a></li>
       </ul>
       <p>🍋 Science of Efficiency — Practical Psychology for Humans</p>
-      <p style="margin-top: 0.5rem;">© 2026. Made with curiosity and mild irreverence.</p>
+      <p style="margin-top: 0.5rem;">&copy; 2026. Made with curiosity and mild irreverence.</p>
     </div>
   </footer>
 
